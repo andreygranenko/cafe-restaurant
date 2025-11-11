@@ -235,7 +235,7 @@
             display: flex;
             flex-direction: column; /* Кнопки друг под другом на мобильном */
             width: 100%;
-            max-width: 300px;
+            max-width: 240px; /* Reduced from 300px */
             gap: 15px; /* Пространство между кнопками */
         }
 
@@ -243,7 +243,8 @@
         .hero-buttons .btn {
             padding: 10px 18px;
             font-size: 0.9rem;
-            width: 100%;
+            width: auto; /* Changed from 100% */
+            min-width: 180px; /* Minimum width for buttons */
         }
 
         /* 4.3. Меню (Menu) */
