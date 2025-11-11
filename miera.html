@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<!-- 
+  Язык по умолчанию (en) указан для поисковиков.
+  Атрибут lang будет динамически меняться с помощью JavaScript.
+-->
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- Критически важный тег для Mobile-First дизайна -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- Базовое SEO -->
+    <title data-key="seo-title">Miera Coffee - Лучший кофе в городе</title>
+    <meta name="description" content="Уютная кофейня с ароматным кофе и свежей выпечкой в сердце Риги." data-key="seo-desc">
+
+    <!-- Подключаем шрифт (Inter - отличный выбор для HoReCa) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        /* --- 1. ЛЕГКАЯ КАСТОМИЗАЦИЯ: CSS ПЕРЕМЕННЫЕ --- */
+        :root {
+            /* Coffee shop color palette - warm and inviting */
+            --color-primary: #6F4E37; /* Coffee brown - main accent */
+            --color-bg: #FAF7F2;       /* Cream/beige background */
+            --color-bg-alt: #F5F1EB;   /* Slightly darker cream for sections */
+            --color-text: #3E2723;      /* Dark brown text */
+            --color-text-light: #FFFFFF; /* White text on dark/accent background */
+            --color-border: #D7CCC8;    /* Light brown borders */
+
+            --font-main: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            --border-radius: 8px;
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        /* --- 2. ГЛОБАЛЬНЫЕ СТИЛИ И СБРОС (MOBILE-FIRST) --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            /* Плавный скролл по якорям (напр. "Как нас найти" -> #map) */
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* --- 3. УТИЛИТЫ И КОМПОНЕНТЫ --- */
+        
+        .container {
+            width: 100%;
+            max-width: 1100px; /* Макс. ширина на десктопах */
+            margin-left: auto;
+            margin-right: auto;
+            /* Mobile-First: 20px отступы по бокам на мобильных
+            */
+            padding: 0 20px;
+        }
+
+        section {
+            /* Большие отступы между секциями */
+            padding: 60px 0;
+        }
+
+        /* Чередуем фон секций для лучшего визуального разделения */
+        section:nth-of-type(odd) {
+            background-color: var(--color-bg-alt);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 40px;
+            line-height: 1.2;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            text-align: center;
+            max-width: 600px;
+            margin: -30px auto 40px auto;
+            color: #555;
+        }
+
+        /* Кнопки */
+        .btn {
+            display: inline-block;
+            padding: 14px 24px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-decoration: none;
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            border: 2px solid transparent;
+        }
+
+        .btn-primary {
+            background-color: var(--color-primary);
+            color: var(--color-text-light);
+        }
+        .btn-primary:hover {
+            background-color: #5D4037; /* Darker coffee brown on hover */
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--color-primary);
+            border-color: var(--color-primary);
+        }
+        .btn-secondary:hover {
+            background-color: var(--color-primary);
+            color: var(--color-text-light);
+        }
+
+        /* --- 4. СТИЛИ СЕКЦИЙ (MOBILE-FIRST) --- */
+
+        /* 4.1. Шапка (Header) */
+        .main-header {
+            background-color: var(--color-bg);
+            border-bottom: 1px solid var(--color-border);
+            padding: 15px 0;
+            position: sticky; /* Прилипающая шапка */
+            top: 0;
+            z-index: 100;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .main-header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--color-primary);
+            text-decoration: none;
+        }
+
+        .lang-switcher a {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #777;
+            text-decoration: none;
+            padding: 5px;
+            transition: color 0.3s ease;
+        }
+        
+        .lang-switcher a:hover {
+            color: var(--color-text);
+        }
+
+        /* Активный язык */
+        .lang-switcher a.active {
+            color: var(--color-primary);
+        }
+
+        /* 4.2. Первый экран (Hero) */
+        .hero {
+            min-height: 80vh; /* Высота на мобильном */
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding-top: 40px;
+            padding-bottom: 40px;
+            position: relative;
+            background-image: url('data/miera/main.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        /* Overlay for better text readability */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(58, 39, 35, 0.4); /* Dark brown overlay with transparency */
+            z-index: 1;
+        }
+
+        .hero .container {
+            position: relative;
+            z-index: 2; /* Ensure content is above overlay */
+        }
+
+        .hero h1 {
+            font-size: 2.8rem; /* Крупнее на мобильном */
+            font-weight: 800;
+            line-height: 1.2;
+            margin-bottom: 15px;
+            color: var(--color-text-light); /* White text for contrast */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Text shadow for readability */
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            max-width: 500px;
+            margin-bottom: 30px;
+            color: var(--color-text-light); /* White text for contrast */
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3); /* Text shadow for readability */
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-direction: column; /* Кнопки друг под другом на мобильном */
+            width: 100%;
+            max-width: 300px;
+            gap: 15px; /* Пространство между кнопками */
+        }
+
+        /* 4.3. Меню (Menu) */
+        .menu-nav {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap; /* Перенос на моб. */
+        }
+
+        .menu-nav a {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #555;
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: var(--border-radius);
+            border: 2px solid var(--color-border);
+            transition: all 0.3s ease;
+        }
+        .menu-nav a:hover,
+        .menu-nav a.active-category { /* (JS может добавлять этот класс) */
+            background-color: var(--color-primary);
+            color: var(--color-text-light);
+            border-color: var(--color-primary);
+        }
+
+        .menu-category h3 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--color-primary);
+        }
+
+        .menu-item {
+            margin-bottom: 25px;
+            /* Внутренние отступы, если нужен фон/рамка */
+            /* padding: 15px; */
+            /* background: var(--color-bg); */
+            /* border-radius: var(--border-radius); */
+        }
+
+        .menu-item-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 15px;
+        }
+
+        .menu-item-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .menu-item-price {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--color-primary);
+            white-space: nowrap; /* Чтобы цена не переносилась */
+        }
+        
+        /* Линия между названием и ценой (опционально, но красиво) */
+        .menu-item-dots {
+            flex-grow: 1;
+            border-bottom: 1px dashed #ccc;
+            position: relative;
+            bottom: 4px;
+            margin: 0 10px;
+        }
+
+        .menu-item-desc {
+            font-size: 0.95rem;
+            color: #555;
+            margin-top: 5px;
+        }
+
+        /* 4.4. О Нас / Галерея */
+        .about-text {
+            font-size: 1.1rem;
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 40px auto;
+        }
+
+        .gallery-grid {
+            display: grid;
+            /* 2 колонки на мобильных */
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px; /* Маленький отступ */
+        }
+
+        .gallery-grid img {
+            width: 100%;
+            height: 150px; /* Фикс. высота для моб. */
+            object-fit: cover; /* Кадрирование */
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-sm);
+            transition: transform 0.3s ease;
+        }
+        .gallery-grid img:hover {
+            transform: scale(1.05);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* 4.5. Время Работы */
+        .hours-list {
+            list-style: none;
+            max-width: 500px;
+            margin: 0 auto;
+            background: var(--color-bg);
+            padding: 20px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow-md);
+        }
+
+        .hours-list li {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.1rem;
+            padding: 12px 0;
+            border-bottom: 1px solid var(--color-border);
+        }
+        .hours-list li:last-child {
+            border-bottom: none;
+        }
+
+        .hours-list .day {
+            font-weight: 600;
+        }
+        .hours-list .time {
+            font-weight: 500;
+            color: var(--color-primary);
+        }
+
+        /* 4.6. Карта и Контакты */
+        .map-container {
+            position: relative;
+            width: 100%;
+            height: 350px; /* Высота карты */
+            margin-bottom: 30px;
+            border-radius: var(--border-radius);
+            overflow: hidden; /* Скрываем углы iframe */
+            box-shadow: var(--shadow-md);
+        }
+        
+        .map-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        .contact-info {
+            text-align: center;
+            font-size: 1.1rem;
+        }
+        .contact-info p {
+            margin-bottom: 10px;
+        }
+        .contact-info a {
+            color: var(--color-primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .contact-info a:hover {
+            text-decoration: underline;
+        }
+
+        /* --- 5. АДАПТАЦИЯ ДЛЯ ПЛАНШЕТОВ И ДЕСКТОПОВ --- */
+        
+        /* Планшеты (min-width: 768px) */
+        @media (min-width: 768px) {
+            .section-title {
+                font-size: 3rem;
+            }
+
+            .hero h1 {
+                font-size: 4rem; /* Крупнее на десктопе */
+            }
+
+            /* Кнопки в ряд на десктопе */
+            .hero-buttons {
+                flex-direction: row;
+                justify-content: center;
+                gap: 20px;
+                width: auto;
+            }
+
+            /* 3 колонки в галерее */
+            .gallery-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 15px;
+            }
+            .gallery-grid img {
+                height: 200px; /* Выше на планшетах */
+            }
+
+            /* Разделяем меню на 2 колонки */
+            .menu-grid {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 30px;
+            }
+        }
+        
+        /* Десктопы (min-width: 1024px) */
+        @media (min-width: 1024px) {
+            .hero {
+                min-height: 85vh;
+            }
+
+            /* 4 колонки в галерее */
+            .gallery-grid {
+                grid-template-columns: repeat(4, 1fr);
+                height: 220px;
+            }
+            
+            /* Секцию "Карта + Контакты" делаем в 2 колонки */
+            .contacts-layout {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 40px;
+                align-items: center;
+            }
+            .map-container {
+                height: 400px; /* Выше карта */
+                margin-bottom: 0;
+            }
+            .contact-info {
+                text-align: left; /* Текст слева */
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <!-- =======================
+         1. ШАПКА (HEADER)
+    =========================== -->
+    <header class="main-header">
+        <div class="container">
+            <a href="#" class="logo" data-key="logo-text">Miera Coffee</a>
+            <nav class="lang-switcher">
+                <!-- Ссылки для переключения языка. JS будет ловить клики по ID -->
+                <a href="#" id="lang-lv">LV</a> |
+                <a href="#" id="lang-ru">RU</a> |
+                <a href="#" id="lang-en">EN</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+
+        <!-- =======================
+             2. ПЕРВЫЙ ЭКРАН (HERO)
+        =========================== -->
+        <section class="hero" id="hero">
+            <div class="container">
+                <h1 data-key="hero-title">Miera Coffee</h1>
+                <p class="hero-subtitle" data-key="hero-subtitle">
+                    Где каждая чашка рассказывает свою историю. Ароматный кофе и уютная атмосфера ждут вас.
+                </p>
+                <div class="hero-buttons">
+                    <a href="tel:+37129809489" class="btn btn-primary" data-key="btn-call">Позвонить</a>
+                    <a href="#map" class="btn btn-secondary" data-key="btn-map">Как нас найти</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- =======================
+             3. МЕНЮ (THE MENU)
+        =========================== -->
+        <section class="menu" id="menu">
+            <div class="container">
+                <h2 class="section-title" data-key="menu-title">Наше Меню</h2>
+                
+                <!-- Навигация по категориям (табы/якоря) -->
+                <nav class="menu-nav">
+                    <a href="#menu-coffee" data-key="menu-cat-coffee">Кофе</a>
+                    <a href="#menu-pastries" data-key="menu-cat-pastries">Выпечка</a>
+                    <a href="#menu-bread" data-key="menu-cat-bread">Хлеб</a>
+                    <a href="#menu-hot" data-key="menu-cat-hot">Горячие Напитки</a>
+                    <a href="#menu-refresh" data-key="menu-cat-refresh">Освежающие Напитки</a>
+                </nav>
+
+                <div class="menu-grid">
+                    
+                    <!-- Категория 1: Кофе -->
+                    <div class="menu-category" id="menu-coffee">
+                        <h3 data-key="menu-cat-coffee">Кофе</h3>
+                        
+                        <div class="menu-item">
+                            <div class="menu-item-header">
+                                <span class="menu-item-title" data-key="menu-item-1-title">Эспрессо</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">2.50 €</span>
+                            </div>
+                        </div>
+                        
+                        <div class="menu-item">
+                            <div class="menu-item-header">
+                                <span class="menu-item-title" data-key="menu-item-2-title">Двойной эспрессо</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">3.20 €</span>
+                            </div>
+                        </div>
+                        
+                        <div class="menu-item">
+                            <div class="menu-item-header">
+                                <span class="menu-item-title" data-key="menu-item-3-title">Флэт уайт</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">3.80 €</span>
+                        </div>
+                    </div>
+
+                        <div class="menu-item">
+                            <div class="menu-item-header">
+                                <span class="menu-item-title" data-key="menu-item-4-title">Черный кофе</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">2.80 € / 3.20 €</span>
+                            </div>
+                        </div>
+                        
+                        <div class="menu-item">
+                            <div class="menu-item-header">
+                                <span class="menu-item-title" data-key="menu-item-5-title">Кофе с молоком</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">3.30 € / 3.80 €</span>
+                            </div>
+                        </div>
+                        
+                        <div class="menu-item">
+                            <div class="menu-item-header">
+                                <span class="menu-item-title" data-key="menu-item-6-title">Капучино</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">3.50 € / 3.90 €</span>
+                            </div>
+                        </div>
+                        
+                        <div class="menu-item">
+                            <div class="menu-item-header">
+                                <span class="menu-item-title" data-key="menu-item-7-title">Кафе Латте</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">3.90 €</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Категория 2: Выпечка -->
+                    <div class="menu-category" id="menu-pastries">
+                        <h3 data-key="menu-cat-pastries">Выпечка</h3>
+                        
+                        <div class="menu-item">
+                            <div class="menu-item-header">
+                                <span class="menu-item-title" data-key="menu-item-8-title">Коричная сдоба</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">2.80 €</span>
+                            </div>
+                        </div>
+                        
+                        <div class="menu-item">
+                            <div class="menu-item-header">
+                                <span class="menu-item-title" data-key="menu-item-9-title">Кардамоновая сдоба</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">2.80 €</span>
+                            </div>
+                        </div>
+                        
+                        <div class="menu-item">
+                            <div class="menu-item-header">
+                                <span class="menu-item-title" data-key="menu-item-10-title">Карамельная сдоба</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">3.20 €</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Категория 3: Хлеб -->
+                    <div class="menu-category" id="menu-bread">
+                        <h3 data-key="menu-cat-bread">Хлеб</h3>
+                        
+                        <div class="menu-item">
+                            <div class="menu-item-header">
+                                <span class="menu-item-title" data-key="menu-item-11-title">Классический хлеб на закваске</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">4.20 €</span>
+                            </div>
+                        </div>
+                        
+                        <div class="menu-item">
+                            <div class="menu-item-header">
+                                <span class="menu-item-title" data-key="menu-item-12-title">Хлеб на закваске с семенами</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">4.80 €</span>
+                            </div>
+                        </div>
+                        
+                        <div class="menu-item">
+                            <div class="menu-item-header">
+                                <span class="menu-item-title" data-key="menu-item-13-title">Фокачча с томатами и перцем</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">1.10 € / 6.00 €</span>
+                            </div>
+                        </div>
+                        
+                        <div class="menu-item">
+                            <div class="menu-item-header">
+                                <span class="menu-item-title" data-key="menu-item-14-title">Фокачча с оливками</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">1.10 € / 6.00 €</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Категория 4: Горячие Напитки -->
+                    <div class="menu-category" id="menu-hot">
+                        <h3 data-key="menu-cat-hot">Горячие Напитки</h3>
+                        
+                        <div class="menu-item">
+                            <div class="menu-item-header">
+                                <span class="menu-item-title" data-key="menu-item-15-title">Матча Латте</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">4.50 €</span>
+                            </div>
+                        </div>
+                        
+                        <div class="menu-item">
+                            <div class="menu-item-header">
+                                <span class="menu-item-title" data-key="menu-item-16-title">Шоколадный напиток</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">4.50 €</span>
+                            </div>
+                        </div>
+                        
+                        <div class="menu-item">
+                            <div class="menu-item-header">
+                                <span class="menu-item-title" data-key="menu-item-17-title">Чай в чайнике</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">4.50 €</span>
+                            </div>
+                        </div>
+                        
+                        <div class="menu-item">
+                            <div class="menu-item-header">
+                                <span class="menu-item-title" data-key="menu-item-18-title">Молоко / Растительное молоко</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">0.50 €</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Категория 5: Освежающие Напитки -->
+                    <div class="menu-category" id="menu-refresh">
+                        <h3 data-key="menu-cat-refresh">Освежающие Напитки</h3>
+                        
+                        <div class="menu-item">
+                            <div class="menu-item-header">
+                                <span class="menu-item-title" data-key="menu-item-19-title">Розовый лимонад</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">2.80 €</span>
+                            </div>
+                        </div>
+                        
+                        <div class="menu-item">
+                            <div class="menu-item-header">
+                                <span class="menu-item-title" data-key="menu-item-20-title">Индийский тоник</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">2.80 €</span>
+                            </div>
+                        </div>
+                        
+                        <div class="menu-item">
+                            <div class="menu-item-header">
+                                <span class="menu-item-title" data-key="menu-item-21-title">Coca-Cola</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">2.80 €</span>
+                            </div>
+                        </div>
+                        
+                        <div class="menu-item">
+                            <div class="menu-item-header">
+                                <span class="menu-item-title" data-key="menu-item-22-title">Комбуча</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">3.80 €</span>
+                            </div>
+                        </div>
+                        
+                        <div class="menu-item">
+                            <div class="menu-item-header">
+                                <span class="menu-item-title" data-key="menu-item-23-title">Яблочный сок</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">2.80 €</span>
+                            </div>
+                        </div>
+                        
+                        <div class="menu-item">
+                            <div class="menu-item-header">
+                                <span class="menu-item-title" data-key="menu-item-24-title">Апельсиновый сок</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">2.80 €</span>
+                            </div>
+                        </div>
+                        
+                        <div class="menu-item">
+                            <div class="menu-item-header">
+                                <span class="menu-item-title" data-key="menu-item-25-title">Минеральная вода без газа</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">2.50 €</span>
+                            </div>
+                        </div>
+                        
+                        <div class="menu-item">
+                            <div class="menu-item-header">
+                                <span class="menu-item-title" data-key="menu-item-26-title">Минеральная вода с газом</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">2.50 €</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- =======================
+             4. О НАС / ГАЛЕРЕЯ
+        =========================== -->
+        <section class="about" id="about">
+            <div class="container">
+                <h2 class="section-title" data-key="about-title">О Нас</h2>
+                <p class="about-text" data-key="about-text">
+                    Miera Coffee — это уютное место, где каждый найдет свой идеальный кофе. Мы обжариваем зерна вручную и готовим каждую чашку с любовью. Приходите насладиться ароматом свежего кофе и домашней выпечкой в атмосфере спокойствия и уюта.
+                </p>
+
+                <div class="gallery-grid">
+                    <!-- Coffee shop gallery images -->
+                    <img src="data/miera/1.jpg" alt="Интерьер кофейни" data-key="alt-img-1">
+                    <img src="data/miera/2.jpg" alt="Чашка кофе" data-key="alt-img-2">
+                    <img src="data/miera/3.jpg" alt="Выпечка" data-key="alt-img-3">
+                    <img src="data/miera/4.jpg" alt="Бариста" data-key="alt-img-4">
+                </div>
+            </div>
+        </section>
+        
+        <!-- =======================
+             5. ВРЕМЯ РАБОТЫ
+        =========================== -->
+        <section class="hours" id="hours">
+            <div class="container">
+                <h2 class="section-title" data-key="hours-title">Время Работы</h2>
+                <ul class="hours-list">
+                    <li>
+                        <span class="day" data-key="day-mon">Понедельник</span>
+                        <span class="time">08:00 - 21:00</span>
+                    </li>
+                    <li>
+                        <span class="day" data-key="day-tue">Вторник</span>
+                        <span class="time">08:00 - 21:00</span>
+                    </li>
+                    <li>
+                        <span class="day" data-key="day-wed">Среда</span>
+                        <span class="time">08:00 - 21:00</span>
+                    </li>
+                    <li>
+                        <span class="day" data-key="day-thu">Четверг</span>
+                        <span class="time">08:00 - 21:00</span>
+                    </li>
+                    <li>
+                        <span class="day" data-key="day-fri">Пятница</span>
+                        <span class="time">08:00 - 21:00</span>
+                    </li>
+                    <li>
+                        <span class="day" data-key="day-sat">Суббота</span>
+                        <span class="time">10:00 - 21:00</span>
+                    </li>
+                    <li>
+                        <span class="day" data-key="day-sun">Воскресенье</span>
+                        <span class="time">10:00 - 18:00</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- =======================
+             6. КАРТА И КОНТАКТЫ
+        =========================== -->
+        <section class="map" id="map">
+            <div class="container">
+                <h2 class="section-title" data-key="contact-title">Контакты</h2>
+                
+                <div class="contacts-layout">
+                    <!-- Плейсхолдер для Google Карты -->
+                    <div class="map-container">
+                        <!-- 
+                          Замените '...' на ваш код встраивания Google/Waze 
+                          Пример: <iframe src="https://www.google.com/maps/embed?pb=..."></iframe>
+                        -->
+                         <iframe 
+                            src="https://www.google.com/maps?q=Miera+iela+89,+Vidzemes+priekšpilsēta,+Rīga,+LV-1013,+Latvia&output=embed" 
+                            width="600" 
+                            height="450" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
+                            referrerpolicy="no-referrer-when-downgrade">
+                        </iframe>
+                    </div>
+
+                    <div class="contact-info">
+                        <p>
+                            <strong data-key="contact-address">Адрес:</strong><br>
+                            Miera iela 89, Vidzemes priekšpilsēta, Rīga, LV-1013
+                        </p>
+                        <p>
+                            <strong data-key="contact-phone">Телефон:</strong><br>
+                            <a href="tel:+37129809489">29809489</a>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- =======================
+         JAVASCRIPT (i18n)
+    =========================== -->
+    <script>
+        // Ждем, пока загрузится вся структура страницы
+        document.addEventListener('DOMContentLoaded', () => {
+
+            // --- 1. ОБЪЕКТ С ПЕРЕВОДАМИ ---
+            const translations = {
+                "lv": {
+                    "seo-title": "Miera Coffee - Labākā kafija pilsētā",
+                    "seo-desc": "Svaiga kafija un mājas izgatavota konditoreja Rīgas sirdī.",
+                    "logo-text": "Miera Coffee",
+                    "hero-title": "Miera Coffee",
+                    "hero-subtitle": "Kur katra tase stāsta savu stāstu. Garšīga kafija un mājīga atmosfēra jūs sagaida.",
+                    "btn-call": "Zvanīt",
+                    "btn-map": "Kā mūs atrast",
+                    "menu-title": "Mūsu Menija",
+                    "menu-cat-coffee": "Kafija",
+                    "menu-cat-pastries": "Konditoreja",
+                    "menu-cat-bread": "Maize",
+                    "menu-cat-hot": "Karstie Dzērieni",
+                    "menu-cat-refresh": "Atspirdzinošie Dzērieni",
+                    "menu-item-1-title": "Espresso",
+                    "menu-item-2-title": "Dubultais espresso",
+                    "menu-item-3-title": "Flat white",
+                    "menu-item-4-title": "Melna kafija",
+                    "menu-item-5-title": "Kafija ar pienu",
+                    "menu-item-6-title": "Cappuccino",
+                    "menu-item-7-title": "Cafe Latte",
+                    "menu-item-8-title": "Kanela smalkmaizīte",
+                    "menu-item-9-title": "Kardamona smalkmaizīte",
+                    "menu-item-10-title": "Karameļu smalkmaizīte",
+                    "menu-item-11-title": "Klasiskā skābmaize",
+                    "menu-item-12-title": "Seklu skābmaize",
+                    "menu-item-13-title": "Ar tomātiem un papriku Focaccia",
+                    "menu-item-14-title": "Focaccia ar olīvēm",
+                    "menu-item-15-title": "Matcha Latte",
+                    "menu-item-16-title": "Šokolādes dzēriens",
+                    "menu-item-17-title": "Tēja kanniņa",
+                    "menu-item-18-title": "Piens, augu piens",
+                    "menu-item-19-title": "Rožu limonāde",
+                    "menu-item-20-title": "Toniks indian",
+                    "menu-item-21-title": "Coca-Cola",
+                    "menu-item-22-title": "Kombuča",
+                    "menu-item-23-title": "Ābolu sula",
+                    "menu-item-24-title": "Apelsīnu sula",
+                    "menu-item-25-title": "Negāzēts minerālūdens",
+                    "menu-item-26-title": "Gāzēts minerālūdens",
+                    "about-title": "Par Mums",
+                    "about-text": "Miera Coffee ir mājīga vieta, kur katrs atradīs savu ideālo kafiju. Mēs ar rokām ceptas pupiņas un gatavojam katru tasi ar mīlestību. Nāciet baudīt svaigas kafijas aromātu un mājas konditoreju mierīgā un mājīgā atmosfērā.",
+                    "alt-img-1": "Kafijas veikala interjers",
+                    "alt-img-2": "Kafijas tase",
+                    "alt-img-3": "Konditoreja",
+                    "alt-img-4": "Barista",
+                    "hours-title": "Darba Laiks",
+                    "day-mon": "Pirmdiena",
+                    "day-tue": "Otrdiena",
+                    "day-wed": "Trešdiena",
+                    "day-thu": "Ceturtdiena",
+                    "day-fri": "Piektdiena",
+                    "day-sat": "Sestdiena",
+                    "day-sun": "Svētdiena",
+                    "day-closed": "Slēgts",
+                    "contact-title": "Kontakti",
+                    "contact-address": "Adrese:",
+                    "contact-phone": "Tālrunis:",
+                    "contact-email": "E-pasts:"
+                },
+                "ru": {
+                    "seo-title": "Miera Coffee - Лучший кофе в городе",
+                    "seo-desc": "Уютная кофейня с ароматным кофе и свежей выпечкой в сердце Риги.",
+                    "logo-text": "Miera Coffee",
+                    "hero-title": "Miera Coffee",
+                    "hero-subtitle": "Где каждая чашка рассказывает свою историю. Ароматный кофе и уютная атмосфера ждут вас.",
+                    "btn-call": "Позвонить",
+                    "btn-map": "Как нас найти",
+                    "menu-title": "Наше Меню",
+                    "menu-cat-coffee": "Кофе",
+                    "menu-cat-pastries": "Выпечка",
+                    "menu-cat-bread": "Хлеб",
+                    "menu-cat-hot": "Горячие Напитки",
+                    "menu-cat-refresh": "Освежающие Напитки",
+                    "menu-item-1-title": "Эспрессо",
+                    "menu-item-2-title": "Двойной эспрессо",
+                    "menu-item-3-title": "Флэт уайт",
+                    "menu-item-4-title": "Черный кофе",
+                    "menu-item-5-title": "Кофе с молоком",
+                    "menu-item-6-title": "Капучино",
+                    "menu-item-7-title": "Кафе Латте",
+                    "menu-item-8-title": "Коричная сдоба",
+                    "menu-item-9-title": "Кардамоновая сдоба",
+                    "menu-item-10-title": "Карамельная сдоба",
+                    "menu-item-11-title": "Классический хлеб на закваске",
+                    "menu-item-12-title": "Хлеб на закваске с семенами",
+                    "menu-item-13-title": "Фокачча с томатами и перцем",
+                    "menu-item-14-title": "Фокачча с оливками",
+                    "menu-item-15-title": "Матча Латте",
+                    "menu-item-16-title": "Шоколадный напиток",
+                    "menu-item-17-title": "Чай в чайнике",
+                    "menu-item-18-title": "Молоко / Растительное молоко",
+                    "menu-item-19-title": "Розовый лимонад",
+                    "menu-item-20-title": "Индийский тоник",
+                    "menu-item-21-title": "Coca-Cola",
+                    "menu-item-22-title": "Комбуча",
+                    "menu-item-23-title": "Яблочный сок",
+                    "menu-item-24-title": "Апельсиновый сок",
+                    "menu-item-25-title": "Минеральная вода без газа",
+                    "menu-item-26-title": "Минеральная вода с газом",
+                    "about-title": "О Нас",
+                    "about-text": "Miera Coffee — это уютное место, где каждый найдет свой идеальный кофе. Мы обжариваем зерна вручную и готовим каждую чашку с любовью. Приходите насладиться ароматом свежего кофе и домашней выпечкой в атмосфере спокойствия и уюта.",
+                    "alt-img-1": "Интерьер кофейни",
+                    "alt-img-2": "Чашка кофе",
+                    "alt-img-3": "Выпечка",
+                    "alt-img-4": "Бариста",
+                    "hours-title": "Время Работы",
+                    "day-mon": "Понедельник",
+                    "day-tue": "Вторник",
+                    "day-wed": "Среда",
+                    "day-thu": "Четверг",
+                    "day-fri": "Пятница",
+                    "day-sat": "Суббота",
+                    "day-sun": "Воскресенье",
+                    "day-closed": "Закрыто",
+                    "contact-title": "Контакты",
+                    "contact-address": "Адрес:",
+                    "contact-phone": "Телефон:",
+                    "contact-email": "Email:"
+                },
+                "en": {
+                    "seo-title": "Miera Coffee - Best coffee in the city",
+                    "seo-desc": "Cozy coffee shop with aromatic coffee and fresh pastries in the heart of Riga.",
+                    "logo-text": "Miera Coffee",
+                    "hero-title": "Miera Coffee",
+                    "hero-subtitle": "Where every cup tells its story. Aromatic coffee and cozy atmosphere await you.",
+                    "btn-call": "Call Us",
+                    "btn-map": "Find Us",
+                    "menu-title": "Our Menu",
+                    "menu-cat-coffee": "Coffee",
+                    "menu-cat-pastries": "Pastries",
+                    "menu-cat-bread": "Bread",
+                    "menu-cat-hot": "Hot Drinks",
+                    "menu-cat-refresh": "Refreshing Drinks",
+                    "menu-item-1-title": "Espresso",
+                    "menu-item-2-title": "Double Espresso",
+                    "menu-item-3-title": "Flat White",
+                    "menu-item-4-title": "Black Coffee",
+                    "menu-item-5-title": "Coffee with Milk",
+                    "menu-item-6-title": "Cappuccino",
+                    "menu-item-7-title": "Cafe Latte",
+                    "menu-item-8-title": "Cinnamon Pastry",
+                    "menu-item-9-title": "Cardamom Pastry",
+                    "menu-item-10-title": "Caramel Pastry",
+                    "menu-item-11-title": "Classic Sourdough Bread",
+                    "menu-item-12-title": "Seeded Sourdough Bread",
+                    "menu-item-13-title": "Focaccia with Tomatoes and Peppers",
+                    "menu-item-14-title": "Focaccia with Olives",
+                    "menu-item-15-title": "Matcha Latte",
+                    "menu-item-16-title": "Chocolate Drink",
+                    "menu-item-17-title": "Pot of Tea",
+                    "menu-item-18-title": "Milk / Plant Milk",
+                    "menu-item-19-title": "Rose Lemonade",
+                    "menu-item-20-title": "Indian Tonic",
+                    "menu-item-21-title": "Coca-Cola",
+                    "menu-item-22-title": "Kombucha",
+                    "menu-item-23-title": "Apple Juice",
+                    "menu-item-24-title": "Orange Juice",
+                    "menu-item-25-title": "Still Mineral Water",
+                    "menu-item-26-title": "Sparkling Mineral Water",
+                    "about-title": "About Us",
+                    "about-text": "Miera Coffee is a cozy place where everyone will find their perfect coffee. We roast beans by hand and prepare each cup with love. Come enjoy the aroma of fresh coffee and homemade pastries in an atmosphere of tranquility and comfort.",
+                    "alt-img-1": "Coffee shop interior",
+                    "alt-img-2": "Coffee cup",
+                    "alt-img-3": "Pastries",
+                    "alt-img-4": "Barista",
+                    "hours-title": "Opening Hours",
+                    "day-mon": "Monday",
+                    "day-tue": "Tuesday",
+                    "day-wed": "Wednesday",
+                    "day-thu": "Thursday",
+                    "day-fri": "Friday",
+                    "day-sat": "Saturday",
+                    "day-sun": "Sunday",
+                    "day-closed": "Closed",
+                    "contact-title": "Contacts",
+                    "contact-address": "Address:",
+                    "contact-phone": "Phone:",
+                    "contact-email": "Email:"
+                }
+            };
+
+            // --- 2. ПОЛУЧЕНИЕ ЭЛЕМЕНТОВ ---
+            const langSwitchers = {
+                lv: document.getElementById('lang-lv'),
+                ru: document.getElementById('lang-ru'),
+                en: document.getElementById('lang-en')
+            };
+            // Собираем все переключатели в массив для удобства
+            const langLinks = Object.values(langSwitchers);
+            
+            // Находим все элементы, которые нужно перевести (с атрибутом data-key)
+            const elementsToTranslate = document.querySelectorAll('[data-key]');
+            
+            // --- 3. ФУНКЦИЯ СМЕНЫ ЯЗЫКА ---
+            const changeLanguage = (lang) => {
+                // 1. Проверяем, существует ли такой язык в нашей базе
+                if (!translations[lang]) {
+                    console.error(`Language ${lang} not found in translations.`);
+                    return;
+                }
+
+                // 2. Перебираем все найденные элементы
+                elementsToTranslate.forEach(element => {
+                    const key = element.dataset.key;
+                    const translation = translations[lang][key];
+
+                    if (translation) {
+                        // Переводим текстовый контент
+                        if (element.tagName === 'TITLE' || element.tagName === 'META') {
+                            // Особый случай для <head> элементов
+                            if (element.tagName === 'TITLE') {
+                                element.textContent = translation;
+                            }
+                            if (element.tagName === 'META' && element.name === 'description') {
+                                element.content = translation;
+                            }
+                        } else if (element.tagName === 'IMG') {
+                            // Особывый случай для alt-тегов изображений
+                            element.alt = translation;
+                        } else {
+                            // Стандартный перевод
+                            element.textContent = translation;
+                        }
+                    }
+                });
+
+                // 3. Устанавливаем атрибут lang у <html>
+                document.documentElement.lang = lang;
+
+                // 4. Сохраняем выбор в localStorage
+                localStorage.setItem('coffeeShopLang', lang);
+
+                // 5. Обновляем активный класс у переключателя
+                langLinks.forEach(link => link.classList.remove('active'));
+                if (langSwitchers[lang]) {
+                    langSwitchers[lang].classList.add('active');
+                }
+            };
+
+            // --- 4. НАЗНАЧЕНИЕ ОБРАБОТЧИКОВ ---
+            Object.keys(langSwitchers).forEach(lang => {
+                langSwitchers[lang].addEventListener('click', (e) => {
+                    e.preventDefault(); // Отменяем переход по ссылке (href="#")
+                    changeLanguage(lang);
+                });
+            });
+
+            // --- 5. ИНИЦИАЛИЗАЦИЯ (ПЕРВАЯ ЗАГРУЗКА) ---
+            // Проверяем, сохранен ли язык в localStorage, иначе используем 'lv' (Латвия)
+            const savedLang = localStorage.getItem('coffeeShopLang') || 'lv';
+            
+            // Вызываем функцию смены языка при первой загрузке
+            changeLanguage(savedLang);
+
+        });
+    </script>
+</body>
+</html>
+</html>
