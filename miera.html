@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <!-- 
-  Язык по умолчанию (en) указан для поисковиков.
+  Язык по умолчанию (lv) указан для поисковиков.
   Атрибут lang будет динамически меняться с помощью JavaScript.
 -->
-<html lang="en">
+<html lang="lv">
 <head>
     <meta charset="UTF-8">
     <!-- Критически важный тег для Mobile-First дизайна -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- Базовое SEO -->
-    <title data-key="seo-title">Miera Coffee - Лучший кофе в городе</title>
-    <meta name="description" content="Уютная кофейня с ароматным кофе и свежей выпечкой в сердце Риги." data-key="seo-desc">
+    <title data-key="seo-title">Miera Coffee - Labākā kafija pilsētā</title>
+    <meta name="description" content="Svaiga kafija un mājas izgatavota konditoreja Rīgas sirdī." data-key="seo-desc">
 
     <!-- Подключаем шрифт (Inter - отличный выбор для HoReCa) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -112,22 +112,24 @@
             transition: all 0.3s ease;
             text-align: center;
             border: 2px solid transparent;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         }
 
         .btn-primary {
-            background-color: var(--color-primary);
+            backdrop-filter: blur(10px);
+            background-color: rgba(111, 78, 55, 0.95); /* Semi-transparent coffee brown */
             color: var(--color-text-light);
         }
         .btn-primary:hover {
-            background-color: #5D4037; /* Darker coffee brown on hover */
+            background-color: rgba(93, 64, 55, 0.95); /* Darker coffee brown on hover */
             transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
         }
 
         .btn-secondary {
-            background-color: transparent;
+            background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
             color: var(--color-primary);
-            border-color: var(--color-primary);
+            backdrop-filter: blur(10px);
         }
         .btn-secondary:hover {
             background-color: var(--color-primary);
@@ -235,6 +237,13 @@
             width: 100%;
             max-width: 300px;
             gap: 15px; /* Пространство между кнопками */
+        }
+
+        /* Smaller buttons on mobile */
+        .hero-buttons .btn {
+            padding: 10px 18px;
+            font-size: 0.9rem;
+            width: 100%;
         }
 
         /* 4.3. Меню (Menu) */
@@ -427,6 +436,13 @@
                 width: auto;
             }
 
+            /* Larger buttons on tablet/desktop */
+            .hero-buttons .btn {
+                padding: 14px 24px;
+                font-size: 1rem;
+                width: auto;
+            }
+
             /* 3 колонки в галерее */
             .gallery-grid {
                 grid-template-columns: repeat(3, 1fr);
@@ -501,11 +517,11 @@
             <div class="container">
                 <h1 data-key="hero-title">Miera Coffee</h1>
                 <p class="hero-subtitle" data-key="hero-subtitle">
-                    Где каждая чашка рассказывает свою историю. Ароматный кофе и уютная атмосфера ждут вас.
+                    Kur katra tase stāsta savu stāstu. Garšīga kafija un mājīga atmosfēra jūs sagaida.
                 </p>
                 <div class="hero-buttons">
-                    <a href="tel:+37129809489" class="btn btn-primary" data-key="btn-call">Позвонить</a>
-                    <a href="#map" class="btn btn-secondary" data-key="btn-map">Как нас найти</a>
+                    <a href="tel:+37129809489" class="btn btn-primary" data-key="btn-call">Zvanīt</a>
+                    <a href="#map" class="btn btn-secondary" data-key="btn-map">Kā mūs atrast</a>
                 </div>
             </div>
         </section>
@@ -515,15 +531,15 @@
         =========================== -->
         <section class="menu" id="menu">
             <div class="container">
-                <h2 class="section-title" data-key="menu-title">Наше Меню</h2>
+                <h2 class="section-title" data-key="menu-title">Mūsu Menija</h2>
                 
                 <!-- Навигация по категориям (табы/якоря) -->
                 <nav class="menu-nav">
-                    <a href="#menu-coffee" data-key="menu-cat-coffee">Кофе</a>
-                    <a href="#menu-pastries" data-key="menu-cat-pastries">Выпечка</a>
-                    <a href="#menu-bread" data-key="menu-cat-bread">Хлеб</a>
-                    <a href="#menu-hot" data-key="menu-cat-hot">Горячие Напитки</a>
-                    <a href="#menu-refresh" data-key="menu-cat-refresh">Освежающие Напитки</a>
+                    <a href="#menu-coffee" data-key="menu-cat-coffee">Kafija</a>
+                    <a href="#menu-pastries" data-key="menu-cat-pastries">Konditoreja</a>
+                    <a href="#menu-bread" data-key="menu-cat-bread">Maize</a>
+                    <a href="#menu-hot" data-key="menu-cat-hot">Karstie Dzērieni</a>
+                    <a href="#menu-refresh" data-key="menu-cat-refresh">Atspirdzinošie Dzērieni</a>
                 </nav>
 
                 <div class="menu-grid">
@@ -770,17 +786,17 @@
         =========================== -->
         <section class="about" id="about">
             <div class="container">
-                <h2 class="section-title" data-key="about-title">О Нас</h2>
+                <h2 class="section-title" data-key="about-title">Par Mums</h2>
                 <p class="about-text" data-key="about-text">
-                    Miera Coffee — это уютное место, где каждый найдет свой идеальный кофе. Мы обжариваем зерна вручную и готовим каждую чашку с любовью. Приходите насладиться ароматом свежего кофе и домашней выпечкой в атмосфере спокойствия и уюта.
+                    Miera Coffee ir mājīga vieta, kur katrs atradīs savu ideālo kafiju. Mēs ar rokām ceptas pupiņas un gatavojam katru tasi ar mīlestību. Nāciet baudīt svaigas kafijas aromātu un mājas konditoreju mierīgā un mājīgā atmosfērā.
                 </p>
 
                 <div class="gallery-grid">
                     <!-- Coffee shop gallery images -->
-                    <img src="data/miera/1.jpg" alt="Интерьер кофейни" data-key="alt-img-1">
-                    <img src="data/miera/2.jpg" alt="Чашка кофе" data-key="alt-img-2">
-                    <img src="data/miera/3.jpg" alt="Выпечка" data-key="alt-img-3">
-                    <img src="data/miera/4.jpg" alt="Бариста" data-key="alt-img-4">
+                    <img src="data/miera/1.jpg" alt="Kafijas veikala interjers" data-key="alt-img-1">
+                    <img src="data/miera/2.jpg" alt="Kafijas tase" data-key="alt-img-2">
+                    <img src="data/miera/3.jpg" alt="Konditoreja" data-key="alt-img-3">
+                    <img src="data/miera/4.jpg" alt="Barista" data-key="alt-img-4">
                 </div>
             </div>
         </section>
@@ -790,34 +806,34 @@
         =========================== -->
         <section class="hours" id="hours">
             <div class="container">
-                <h2 class="section-title" data-key="hours-title">Время Работы</h2>
+                <h2 class="section-title" data-key="hours-title">Darba Laiks</h2>
                 <ul class="hours-list">
                     <li>
-                        <span class="day" data-key="day-mon">Понедельник</span>
+                        <span class="day" data-key="day-mon">Pirmdiena</span>
                         <span class="time">08:00 - 21:00</span>
                     </li>
                     <li>
-                        <span class="day" data-key="day-tue">Вторник</span>
+                        <span class="day" data-key="day-tue">Otrdiena</span>
                         <span class="time">08:00 - 21:00</span>
                     </li>
                     <li>
-                        <span class="day" data-key="day-wed">Среда</span>
+                        <span class="day" data-key="day-wed">Trešdiena</span>
                         <span class="time">08:00 - 21:00</span>
                     </li>
                     <li>
-                        <span class="day" data-key="day-thu">Четверг</span>
+                        <span class="day" data-key="day-thu">Ceturtdiena</span>
                         <span class="time">08:00 - 21:00</span>
                     </li>
                     <li>
-                        <span class="day" data-key="day-fri">Пятница</span>
+                        <span class="day" data-key="day-fri">Piektdiena</span>
                         <span class="time">08:00 - 21:00</span>
                     </li>
                     <li>
-                        <span class="day" data-key="day-sat">Суббота</span>
+                        <span class="day" data-key="day-sat">Sestdiena</span>
                         <span class="time">10:00 - 21:00</span>
                     </li>
                     <li>
-                        <span class="day" data-key="day-sun">Воскресенье</span>
+                        <span class="day" data-key="day-sun">Svētdiena</span>
                         <span class="time">10:00 - 18:00</span>
                     </li>
                 </ul>
@@ -829,7 +845,7 @@
         =========================== -->
         <section class="map" id="map">
             <div class="container">
-                <h2 class="section-title" data-key="contact-title">Контакты</h2>
+                <h2 class="section-title" data-key="contact-title">Kontakti</h2>
                 
                 <div class="contacts-layout">
                     <!-- Плейсхолдер для Google Карты -->
@@ -851,11 +867,11 @@
 
                     <div class="contact-info">
                         <p>
-                            <strong data-key="contact-address">Адрес:</strong><br>
+                            <strong data-key="contact-address">Adrese:</strong><br>
                             Miera iela 89, Vidzemes priekšpilsēta, Rīga, LV-1013
                         </p>
                         <p>
-                            <strong data-key="contact-phone">Телефон:</strong><br>
+                            <strong data-key="contact-phone">Tālrunis:</strong><br>
                             <a href="tel:+37129809489">29809489</a>
                         </p>
                     </div>
