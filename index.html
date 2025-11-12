@@ -1,38 +1,38 @@
 <!DOCTYPE html>
 <!-- 
-  Язык по умолчанию (en) указан для поисковиков.
+  Язык по умолчанию (lv) указан для поисковиков.
   Атрибут lang будет динамически меняться с помощью JavaScript.
 -->
-<html lang="en">
+<html lang="lv">
 <head>
     <meta charset="UTF-8">
+    <!-- Критически важный тег для Mobile-First дизайна -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <!-- Базовое SEO -->
-    <title data-key="seo-title">OGLE - Wood Fired Grill in Riga</title>
-    <meta name="description" content="Wood Fired Grill. With Soul and Character. Best steaks and cocktails in Riga Old Town." data-key="seo-desc">
+    <title data-key="seo-title">Miera Maize - Labākā kafija pilsētā</title>
+    <meta name="description" content="Svaiga kafija un mājas izgatavota konditoreja Rīgas sirdī." data-key="seo-desc">
 
-    <!-- Подключаем шрифт (Playfair Display для стейкхауса) -->
+    <!-- Подключаем шрифт (Inter - отличный выбор для HoReCa) -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
 
     <style>
         /* --- 1. ЛЕГКАЯ КАСТОМИЗАЦИЯ: CSS ПЕРЕМЕННЫЕ --- */
         :root {
-            /* * Обновлено: Темная тема, акцентный красный "Ogle"
-             */
-            --color-primary: #C0392B; /* Акцентный (Ogle Red) */
-            --color-bg: #1A1A1A;       /* Основной фон (Темный) */
-            --color-bg-alt: #252525;   /* Альтернативный фон (Чуть светлее темный) */
-            --color-text: #EAEAEA;      /* Основной текст (Светлый) */
-            --color-text-light: #FFFFFF; /* Текст на темном/акцентном фоне */
-            --color-border: #444444;    /* Разделители и границы (Темные) */
+            /* Coffee shop color palette - warm and inviting */
+            --color-primary: #6F4E37; /* Coffee brown - main accent */
+            --color-bg: #FAF7F2;       /* Cream/beige background */
+            --color-bg-alt: #F5F1EB;   /* Slightly darker cream for sections */
+            --color-text: #3E2723;      /* Dark brown text */
+            --color-text-light: #FFFFFF; /* White text on dark/accent background */
+            --color-border: #D7CCC8;    /* Light brown borders */
 
-            --font-main: 'Playfair Display', Georgia, 'Times New Roman', serif;
+            --font-main: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
             --border-radius: 8px;
-            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.1);
-            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
+            --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
         }
 
         /* --- 2. ГЛОБАЛЬНЫЕ СТИЛИ И СБРОС (MOBILE-FIRST) --- */
@@ -43,13 +43,14 @@
         }
 
         html {
+            /* Плавный скролл по якорям (напр. "Как нас найти" -> #map) */
             scroll-behavior: smooth;
         }
 
         body {
             font-family: var(--font-main);
             background-color: var(--color-bg);
-            color: var(--color-text); /* Текст стал светлым */
+            color: var(--color-text);
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
@@ -65,17 +66,20 @@
         
         .container {
             width: 100%;
-            max-width: 1100px;
+            max-width: 1100px; /* Макс. ширина на десктопах */
             margin-left: auto;
             margin-right: auto;
+            /* Mobile-First: 20px отступы по бокам на мобильных
+            */
             padding: 0 20px;
         }
 
         section {
+            /* Большие отступы между секциями */
             padding: 60px 0;
         }
 
-        /* Чередуем фон секций (теперь оба темные) */
+        /* Чередуем фон секций для лучшего визуального разделения */
         section:nth-of-type(odd) {
             background-color: var(--color-bg-alt);
         }
@@ -93,7 +97,7 @@
             text-align: center;
             max-width: 600px;
             margin: -30px auto 40px auto;
-            color: #AAA; /* Обновлено для темной темы */
+            color: #555;
         }
 
         /* Кнопки */
@@ -108,22 +112,24 @@
             transition: all 0.3s ease;
             text-align: center;
             border: 2px solid transparent;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
         }
 
         .btn-primary {
-            background-color: var(--color-primary);
+            backdrop-filter: blur(10px);
+            background-color: rgba(111, 78, 55, 0.95); /* Semi-transparent coffee brown */
             color: var(--color-text-light);
         }
         .btn-primary:hover {
-            background-color: #A33125;
+            background-color: rgba(93, 64, 55, 0.95); /* Darker coffee brown on hover */
             transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.4);
         }
 
         .btn-secondary {
-            background-color: transparent;
+            background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
             color: var(--color-primary);
-            border-color: var(--color-primary);
+            backdrop-filter: blur(10px);
         }
         .btn-secondary:hover {
             background-color: var(--color-primary);
@@ -134,10 +140,10 @@
 
         /* 4.1. Шапка (Header) */
         .main-header {
-            background-color: var(--color-bg-alt); /* Темная шапка */
+            background-color: var(--color-bg);
             border-bottom: 1px solid var(--color-border);
             padding: 15px 0;
-            position: sticky;
+            position: sticky; /* Прилипающая шапка */
             top: 0;
             z-index: 100;
             box-shadow: var(--shadow-sm);
@@ -159,7 +165,7 @@
         .lang-switcher a {
             font-size: 0.9rem;
             font-weight: 600;
-            color: #999; /* Обновлено для темной темы */
+            color: #777;
             text-decoration: none;
             padding: 5px;
             transition: color 0.3s ease;
@@ -172,27 +178,26 @@
         /* Активный язык */
         .lang-switcher a.active {
             color: var(--color-primary);
-            text-decoration: underline;
         }
 
         /* 4.2. Первый экран (Hero) */
         .hero {
-            min-height: 80vh;
+            min-height: 80vh; /* Высота на мобильном */
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: flex-start;
-            text-align: left;
+            align-items: center;
+            text-align: center;
             padding-top: 40px;
             padding-bottom: 40px;
-            padding-left: 20px;
-            background-image: url('data/ogle/interior.jpg');
+            position: relative;
+            background-image: url('data/miera/main.png');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            position: relative;
         }
 
+        /* Overlay for better text readability */
         .hero::before {
             content: '';
             position: absolute;
@@ -200,35 +205,46 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(58, 39, 35, 0.4); /* Dark brown overlay with transparency */
             z-index: 1;
         }
 
-        .hero > * {
+        .hero .container {
             position: relative;
-            z-index: 2;
+            z-index: 2; /* Ensure content is above overlay */
         }
 
         .hero h1 {
-            font-size: 2.8rem;
+            font-size: 2.8rem; /* Крупнее на мобильном */
             font-weight: 800;
             line-height: 1.2;
             margin-bottom: 15px;
+            color: var(--color-text-light); /* White text for contrast */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); /* Text shadow for readability */
         }
 
         .hero-subtitle {
             font-size: 1.2rem;
             max-width: 500px;
             margin-bottom: 30px;
-            color: #fff; /* Обновлено для темной темы */
+            color: var(--color-text-light); /* White text for contrast */
+            text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.3); /* Text shadow for readability */
         }
 
         .hero-buttons {
             display: flex;
-            flex-direction: column;
-            width: auto;
-            gap: 15px;
-            align-items: flex-start;
+            flex-direction: column; /* Кнопки друг под другом на мобильном */
+            width: 100%;
+            max-width: 240px; /* Reduced from 300px */
+            gap: 15px; /* Пространство между кнопками */
+        }
+
+        /* Smaller buttons on mobile */
+        .hero-buttons .btn {
+            padding: 10px 18px;
+            font-size: 0.9rem;
+            width: auto; /* Changed from 100% */
+            min-width: 180px; /* Minimum width for buttons */
         }
 
         /* 4.3. Меню (Menu) */
@@ -237,13 +253,13 @@
             justify-content: center;
             gap: 15px;
             margin-bottom: 30px;
-            flex-wrap: wrap;
+            flex-wrap: wrap; /* Перенос на моб. */
         }
 
         .menu-nav a {
             font-size: 1rem;
             font-weight: 600;
-            color: #AAA; /* Обновлено для темной темы */
+            color: #555;
             text-decoration: none;
             padding: 8px 15px;
             border-radius: var(--border-radius);
@@ -251,7 +267,7 @@
             transition: all 0.3s ease;
         }
         .menu-nav a:hover,
-        .menu-nav a.active-category {
+        .menu-nav a.active-category { /* (JS может добавлять этот класс) */
             background-color: var(--color-primary);
             color: var(--color-text-light);
             border-color: var(--color-primary);
@@ -267,6 +283,10 @@
 
         .menu-item {
             margin-bottom: 25px;
+            /* Внутренние отступы, если нужен фон/рамка */
+            /* padding: 15px; */
+            /* background: var(--color-bg); */
+            /* border-radius: var(--border-radius); */
         }
 
         .menu-item-header {
@@ -285,12 +305,13 @@
             font-size: 1.2rem;
             font-weight: 700;
             color: var(--color-primary);
-            white-space: nowrap;
+            white-space: nowrap; /* Чтобы цена не переносилась */
         }
         
+        /* Линия между названием и ценой (опционально, но красиво) */
         .menu-item-dots {
             flex-grow: 1;
-            border-bottom: 1px dashed #555; /* Обновлено для темной темы */
+            border-bottom: 1px dashed #ccc;
             position: relative;
             bottom: 4px;
             margin: 0 10px;
@@ -298,7 +319,7 @@
 
         .menu-item-desc {
             font-size: 0.95rem;
-            color: #AAA; /* Обновлено для темной темы */
+            color: #555;
             margin-top: 5px;
         }
 
@@ -308,19 +329,19 @@
             text-align: center;
             max-width: 700px;
             margin: 0 auto 40px auto;
-            color: #BBB; /* Обновлено для темной темы */
         }
 
         .gallery-grid {
             display: grid;
+            /* 2 колонки на мобильных */
             grid-template-columns: repeat(2, 1fr);
-            gap: 10px;
+            gap: 10px; /* Маленький отступ */
         }
 
         .gallery-grid img {
             width: 100%;
-            height: 150px;
-            object-fit: cover;
+            height: 150px; /* Фикс. высота для моб. */
+            object-fit: cover; /* Кадрирование */
             border-radius: var(--border-radius);
             box-shadow: var(--shadow-sm);
             transition: transform 0.3s ease;
@@ -335,7 +356,7 @@
             list-style: none;
             max-width: 500px;
             margin: 0 auto;
-            background: var(--color-bg-alt); /* Обновлено для темной темы */
+            background: var(--color-bg);
             padding: 20px;
             border-radius: var(--border-radius);
             box-shadow: var(--shadow-md);
@@ -364,10 +385,10 @@
         .map-container {
             position: relative;
             width: 100%;
-            height: 350px;
+            height: 350px; /* Высота карты */
             margin-bottom: 30px;
             border-radius: var(--border-radius);
-            overflow: hidden;
+            overflow: hidden; /* Скрываем углы iframe */
             box-shadow: var(--shadow-md);
         }
         
@@ -378,8 +399,6 @@
             width: 100%;
             height: 100%;
             border: 0;
-            /* Фильтр, чтобы карта Google стала темной */
-            filter: grayscale(80%) invert(100%);
         }
 
         .contact-info {
@@ -400,34 +419,41 @@
 
         /* --- 5. АДАПТАЦИЯ ДЛЯ ПЛАНШЕТОВ И ДЕСКТОПОВ --- */
         
+        /* Планшеты (min-width: 768px) */
         @media (min-width: 768px) {
             .section-title {
                 font-size: 3rem;
             }
 
-            .hero {
-                padding-left: 40px;
-            }
-
             .hero h1 {
-                font-size: 4rem;
+                font-size: 4rem; /* Крупнее на десктопе */
             }
 
+            /* Кнопки в ряд на десктопе */
             .hero-buttons {
                 flex-direction: row;
-                justify-content: flex-start;
+                justify-content: center;
                 gap: 20px;
                 width: auto;
             }
 
+            /* Larger buttons on tablet/desktop */
+            .hero-buttons .btn {
+                padding: 14px 24px;
+                font-size: 1rem;
+                width: auto;
+            }
+
+            /* 3 колонки в галерее */
             .gallery-grid {
                 grid-template-columns: repeat(3, 1fr);
                 gap: 15px;
             }
             .gallery-grid img {
-                height: 200px;
+                height: 200px; /* Выше на планшетах */
             }
 
+            /* Разделяем меню на 2 колонки */
             .menu-grid {
                 display: grid;
                 grid-template-columns: 1fr 1fr;
@@ -435,17 +461,19 @@
             }
         }
         
+        /* Десктопы (min-width: 1024px) */
         @media (min-width: 1024px) {
             .hero {
                 min-height: 85vh;
-                padding-left: 60px;
             }
 
+            /* 4 колонки в галерее */
             .gallery-grid {
                 grid-template-columns: repeat(4, 1fr);
                 height: 220px;
             }
             
+            /* Секцию "Карта + Контакты" делаем в 2 колонки */
             .contacts-layout {
                 display: grid;
                 grid-template-columns: 1fr 1fr;
@@ -453,11 +481,11 @@
                 align-items: center;
             }
             .map-container {
-                height: 400px;
+                height: 400px; /* Выше карта */
                 margin-bottom: 0;
             }
             .contact-info {
-                text-align: left;
+                text-align: left; /* Текст слева */
             }
         }
 
@@ -471,9 +499,9 @@
     =========================== -->
     <header class="main-header">
         <div class="container">
-            <!-- ОБНОВЛЕНО: Название -->
-            <a href="#" class="logo" data-key="logo-text">OGLE</a>
+            <a href="#" class="logo" data-key="logo-text">Miera Maize</a>
             <nav class="lang-switcher">
+                <!-- Ссылки для переключения языка. JS будет ловить клики по ID -->
                 <a href="#" id="lang-lv">LV</a> |
                 <a href="#" id="lang-ru">RU</a> |
                 <a href="#" id="lang-en">EN</a>
@@ -488,13 +516,12 @@
         =========================== -->
         <section class="hero" id="hero">
             <div class="container">
-                <!-- ОБНОВЛЕНО: Контент -->
-                <h1 data-key="hero-title">OGLE</h1>
+                <h1 data-key="hero-title">Miera Maize</h1>
                 <p class="hero-subtitle" data-key="hero-subtitle">
-                    Grils uz dzīvās uguns. Ar dvēseli un raksturu.
+                    Kur katra tase stāsta savu stāstu. Garšīga kafija un mājīga atmosfēra jūs sagaida.
                 </p>
                 <div class="hero-buttons">
-                    <a href="tel:+37100000000" class="btn btn-primary" data-key="btn-call">Zvanīt</a>
+                    <a href="tel:+37129809489" class="btn btn-primary" data-key="btn-call">Zvanīt</a>
                     <a href="#map" class="btn btn-secondary" data-key="btn-map">Kā mūs atrast</a>
                 </div>
             </div>
@@ -505,98 +532,249 @@
         =========================== -->
         <section class="menu" id="menu">
             <div class="container">
-                <h2 class="section-title" data-key="menu-title">Mūsu Ēdienkarte</h2>
+                <h2 class="section-title" data-key="menu-title">Mūsu ēdienkarte</h2>
                 
-                <!-- ОБНОВЛЕНО: Категории -->
+                <!-- Навигация по категориям (табы/якоря) -->
                 <nav class="menu-nav">
-                    <a href="#menu-appetizers" data-key="menu-cat-appetizers">Uzkodas</a>
-                    <a href="#menu-main" data-key="menu-cat-main">Grila Ēdieni</a>
-                    <a href="#menu-drinks" data-key="menu-cat-drinks">Kokteiļi</a>
+                    <a href="#menu-coffee" data-key="menu-cat-coffee">Kafija</a>
+                    <a href="#menu-pastries" data-key="menu-cat-pastries">Konditoreja</a>
+                    <a href="#menu-bread" data-key="menu-cat-bread">Maize</a>
+                    <a href="#menu-hot" data-key="menu-cat-hot">Karstie dzērieni</a>
+                    <a href="#menu-refresh" data-key="menu-cat-refresh">Atspirdzinošie dzērieni</a>
                 </nav>
 
                 <div class="menu-grid">
                     
-                    <!-- Категория 1: Закуски -->
-                    <div class="menu-category" id="menu-appetizers">
-                        <h3 data-key="menu-cat-appetizers">Uzkodas</h3>
+                    <!-- Категория 1: Кофе -->
+                    <div class="menu-category" id="menu-coffee">
+                        <h3 data-key="menu-cat-coffee">Кофе</h3>
                         
-                        <!-- ОБНОВЛЕНО: Позиции из меню Ogle -->
                         <div class="menu-item">
                             <div class="menu-item-header">
-                                <span class="menu-item-title" data-key="menu-item-1-title">Brusketa ar meža sēnēm</span>
+                                <span class="menu-item-title" data-key="menu-item-1-title">Эспрессо</span>
                                 <span class="menu-item-dots"></span>
-                                <span class="menu-item-price">11.90 €</span>
+                                <span class="menu-item-price">2.50 €</span>
                             </div>
-                            <p class="menu-item-desc" data-key="menu-item-1-desc">
-                                Krēmsiers un marinēti sīpoli
-                            </p>
                         </div>
                         
                         <div class="menu-item">
                             <div class="menu-item-header">
-                                <span class="menu-item-title" data-key="menu-item-2-title">Laša tartars</span>
+                                <span class="menu-item-title" data-key="menu-item-2-title">Двойной эспрессо</span>
                                 <span class="menu-item-dots"></span>
-                                <span class="menu-item-price">12.90 €</span>
+                                <span class="menu-item-price">3.20 €</span>
                             </div>
-                            <p class="menu-item-desc" data-key="menu-item-2-desc">
-                                Ar avokado un sezama sēklām
-                            </p>
-                        </div>
-                    </div>
-
-                    <!-- Категория 2: Основные Блюда -->
-                    <div class="menu-category" id="menu-main">
-                        <h3 data-key="menu-cat-main">Grila Ēdieni</h3>
-                        
-                        <!-- ОБНОВЛЕНО: Позиции из меню Ogle -->
-                        <div class="menu-item">
-                            <div class="menu-item-header">
-                                <span class="menu-item-title" data-key="menu-item-3-title">Filet Mignon (200g)</span>
-                                <span class="menu-item-dots"></span>
-                                <span class="menu-item-price">29.90 €</span>
-                            </div>
-                            <p class="menu-item-desc" data-key="menu-item-3-desc">
-                                Liellopa filejas steiks
-                            </p>
                         </div>
                         
                         <div class="menu-item">
                             <div class="menu-item-header">
-                                <span class="menu-item-title" data-key="menu-item-4-title">Cūkgaļas BBQ Ribas (450g)</span>
+                                <span class="menu-item-title" data-key="menu-item-3-title">Флэт уайт</span>
                                 <span class="menu-item-dots"></span>
-                                <span class="menu-item-price">22.50 €</span>
-                            </div>
-                            <p class="menu-item-desc" data-key="menu-item-4-desc">
-                                Ar austrumu maizi
-                            </p>
+                                <span class="menu-item-price">3.80 €</span>
                         </div>
                     </div>
 
-                    <!-- Категория 3: Напитки (Коктейли) -->
-                    <div class="menu-category" id="menu-drinks">
-                        <h3 data-key="menu-cat-drinks">Kokteiļi</h3>
-                        
-                        <!-- ОБНОВЛЕНО: Позиции из меню Ogle -->
                         <div class="menu-item">
                             <div class="menu-item-header">
-                                <span class="menu-item-title" data-key="menu-item-5-title">Mango Blush</span>
+                                <span class="menu-item-title" data-key="menu-item-4-title">Черный кофе</span>
                                 <span class="menu-item-dots"></span>
-                                <span class="menu-item-price">15.00 €</span>
+                                <span class="menu-item-price">2.80 € / 3.20 €</span>
                             </div>
-                            <p class="menu-item-desc" data-key="menu-item-5-desc">
-                                Portobello Road Gin, Mango, Grenadīns, Citrons
-                            </p>
                         </div>
                         
                         <div class="menu-item">
                             <div class="menu-item-header">
-                                <span class="menu-item-title" data-key="menu-item-6-title">Green Sensation</span>
+                                <span class="menu-item-title" data-key="menu-item-5-title">Кофе с молоком</span>
                                 <span class="menu-item-dots"></span>
-                                <span class="menu-item-price">15.00 €</span>
+                                <span class="menu-item-price">3.30 € / 3.80 €</span>
                             </div>
-                            <p class="menu-item-desc" data-key="menu-item-6-desc">
-                                Melones liķieris, Džins, Citrona sula, Olas baltums
-                            </p>
+                        </div>
+                        
+                        <div class="menu-item">
+                            <div class="menu-item-header">
+                                <span class="menu-item-title" data-key="menu-item-6-title">Капучино</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">3.50 € / 3.90 €</span>
+                            </div>
+                        </div>
+                        
+                        <div class="menu-item">
+                            <div class="menu-item-header">
+                                <span class="menu-item-title" data-key="menu-item-7-title">Кафе Латте</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">3.90 €</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Категория 2: Выпечка -->
+                    <div class="menu-category" id="menu-pastries">
+                        <h3 data-key="menu-cat-pastries">Выпечка</h3>
+                        
+                        <div class="menu-item">
+                            <div class="menu-item-header">
+                                <span class="menu-item-title" data-key="menu-item-8-title">Коричная сдоба</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">2.80 €</span>
+                            </div>
+                        </div>
+                        
+                        <div class="menu-item">
+                            <div class="menu-item-header">
+                                <span class="menu-item-title" data-key="menu-item-9-title">Кардамоновая сдоба</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">2.80 €</span>
+                            </div>
+                        </div>
+                        
+                        <div class="menu-item">
+                            <div class="menu-item-header">
+                                <span class="menu-item-title" data-key="menu-item-10-title">Карамельная сдоба</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">3.20 €</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Категория 3: Хлеб -->
+                    <div class="menu-category" id="menu-bread">
+                        <h3 data-key="menu-cat-bread">Хлеб</h3>
+                        
+                        <div class="menu-item">
+                            <div class="menu-item-header">
+                                <span class="menu-item-title" data-key="menu-item-11-title">Классический хлеб на закваске</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">4.20 €</span>
+                            </div>
+                        </div>
+                        
+                        <div class="menu-item">
+                            <div class="menu-item-header">
+                                <span class="menu-item-title" data-key="menu-item-12-title">Хлеб на закваске с семенами</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">4.80 €</span>
+                            </div>
+                        </div>
+                        
+                        <div class="menu-item">
+                            <div class="menu-item-header">
+                                <span class="menu-item-title" data-key="menu-item-13-title">Фокачча с томатами и перцем</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">1.10 € / 6.00 €</span>
+                            </div>
+                        </div>
+                        
+                        <div class="menu-item">
+                            <div class="menu-item-header">
+                                <span class="menu-item-title" data-key="menu-item-14-title">Фокачча с оливками</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">1.10 € / 6.00 €</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Категория 4: Горячие Напитки -->
+                    <div class="menu-category" id="menu-hot">
+                        <h3 data-key="menu-cat-hot">Горячие Напитки</h3>
+                        
+                        <div class="menu-item">
+                            <div class="menu-item-header">
+                                <span class="menu-item-title" data-key="menu-item-15-title">Матча Латте</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">4.50 €</span>
+                            </div>
+                        </div>
+                        
+                        <div class="menu-item">
+                            <div class="menu-item-header">
+                                <span class="menu-item-title" data-key="menu-item-16-title">Шоколадный напиток</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">4.50 €</span>
+                            </div>
+                        </div>
+                        
+                        <div class="menu-item">
+                            <div class="menu-item-header">
+                                <span class="menu-item-title" data-key="menu-item-17-title">Чай в чайнике</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">4.50 €</span>
+                            </div>
+                        </div>
+                        
+                        <div class="menu-item">
+                            <div class="menu-item-header">
+                                <span class="menu-item-title" data-key="menu-item-18-title">Молоко / Растительное молоко</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">0.50 €</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Категория 5: Освежающие Напитки -->
+                    <div class="menu-category" id="menu-refresh">
+                        <h3 data-key="menu-cat-refresh">Освежающие Напитки</h3>
+                        
+                        <div class="menu-item">
+                            <div class="menu-item-header">
+                                <span class="menu-item-title" data-key="menu-item-19-title">Розовый лимонад</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">2.80 €</span>
+                            </div>
+                        </div>
+                        
+                        <div class="menu-item">
+                            <div class="menu-item-header">
+                                <span class="menu-item-title" data-key="menu-item-20-title">Индийский тоник</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">2.80 €</span>
+                            </div>
+                        </div>
+                        
+                        <div class="menu-item">
+                            <div class="menu-item-header">
+                                <span class="menu-item-title" data-key="menu-item-21-title">Coca-Cola</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">2.80 €</span>
+                            </div>
+                        </div>
+                        
+                        <div class="menu-item">
+                            <div class="menu-item-header">
+                                <span class="menu-item-title" data-key="menu-item-22-title">Комбуча</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">3.80 €</span>
+                            </div>
+                        </div>
+                        
+                        <div class="menu-item">
+                            <div class="menu-item-header">
+                                <span class="menu-item-title" data-key="menu-item-23-title">Яблочный сок</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">2.80 €</span>
+                            </div>
+                        </div>
+                        
+                        <div class="menu-item">
+                            <div class="menu-item-header">
+                                <span class="menu-item-title" data-key="menu-item-24-title">Апельсиновый сок</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">2.80 €</span>
+                            </div>
+                        </div>
+                        
+                        <div class="menu-item">
+                            <div class="menu-item-header">
+                                <span class="menu-item-title" data-key="menu-item-25-title">Минеральная вода без газа</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">2.50 €</span>
+                            </div>
+                        </div>
+                        
+                        <div class="menu-item">
+                            <div class="menu-item-header">
+                                <span class="menu-item-title" data-key="menu-item-26-title">Минеральная вода с газом</span>
+                                <span class="menu-item-dots"></span>
+                                <span class="menu-item-price">2.50 €</span>
+                            </div>
                         </div>
                     </div>
 
@@ -609,18 +787,17 @@
         =========================== -->
         <section class="about" id="about">
             <div class="container">
-                <h2 class="section-title" data-key="about-title">Par Mums</h2>
-                <!-- ОБНОВЛЕНО: Текст -->
+                <h2 class="section-title" data-key="about-title">Par mums</h2>
                 <p class="about-text" data-key="about-text">
-                    OGLE ir vieta ar dvēseli un raksturu, kas pazīstama ar mūsu malkas grilu. Mēs piedāvājam labākos grilētos ēdienus un unikālus kokteiļus pašā Vecrīgas sirdī.
+                    Miera Maize ir mājīga vieta, kur katrs atradīs savu ideālo kafiju. Mēs ar rokām ceptas pupiņas un gatavojam katru tasi ar mīlestību. Nāciet baudīt svaigas kafijas aromātu un mājas konditoreju mierīgā un mājīgā atmosfērā.
                 </p>
 
                 <div class="gallery-grid">
-                    <!-- ОБНОВЛЕНО: Alt теги -->
-                    <img src="data/ogle/1.jpg" alt="Ogle interjers" data-key="alt-img-1">
-                    <img src="data/ogle/2.jpg" alt="Grila ēdiens" data-key="alt-img-2">
-                    <img src="data/ogle/3.jpg" alt="Kokteilis" data-key="alt-img-3">
-                    <img src="data/ogle/4.jpg" alt="Ogle komanda" data-key="alt-img-4">
+                    <!-- Coffee shop gallery images -->
+                    <img src="data/miera/1.jpg" alt="Kafijas veikala interjers" data-key="alt-img-1">
+                    <img src="data/miera/2.jpg" alt="Kafijas tase" data-key="alt-img-2">
+                    <img src="data/miera/3.jpg" alt="Konditoreja" data-key="alt-img-3">
+                    <img src="data/miera/4.jpg" alt="Barista" data-key="alt-img-4">
                 </div>
             </div>
         </section>
@@ -630,35 +807,35 @@
         =========================== -->
         <section class="hours" id="hours">
             <div class="container">
-                <h2 class="section-title" data-key="hours-title">Darba Laiks</h2>
+                <h2 class="section-title" data-key="hours-title">Darba laiks</h2>
                 <ul class="hours-list">
                     <li>
                         <span class="day" data-key="day-mon">Pirmdiena</span>
-                        <span class="time">12:00 - 22:00</span>
+                        <span class="time">08:00 - 21:00</span>
                     </li>
                     <li>
                         <span class="day" data-key="day-tue">Otrdiena</span>
-                        <span class="time">12:00 - 22:00</span>
+                        <span class="time">08:00 - 21:00</span>
                     </li>
                     <li>
                         <span class="day" data-key="day-wed">Trešdiena</span>
-                        <span class="time">12:00 - 22:00</span>
+                        <span class="time">08:00 - 21:00</span>
                     </li>
                     <li>
-                        <span class="day" data-key="day-thu">Četvertoksnis</span>
-                        <span class="time">12:00 - 22:00</span>
+                        <span class="day" data-key="day-thu">Ceturtdiena</span>
+                        <span class="time">08:00 - 21:00</span>
                     </li>
                     <li>
                         <span class="day" data-key="day-fri">Piektdiena</span>
-                        <span class="time">12:00 - 23:00</span>
+                        <span class="time">08:00 - 21:00</span>
                     </li>
                     <li>
                         <span class="day" data-key="day-sat">Sestdiena</span>
-                        <span class="time">11:00 - 23:00</span>
+                        <span class="time">10:00 - 21:00</span>
                     </li>
                     <li>
                         <span class="day" data-key="day-sun">Svētdiena</span>
-                        <span class="time" data-key="day-closed">Slēgts</span>
+                        <span class="time">10:00 - 18:00</span>
                     </li>
                 </ul>
             </div>
@@ -672,15 +849,19 @@
                 <h2 class="section-title" data-key="contact-title">Kontakti</h2>
                 
                 <div class="contacts-layout">
+                    <!-- Плейсхолдер для Google Карты -->
                     <div class="map-container">
-                        <!-- Карта Старой Риги (с темным фильтром) -->
-                         <iframe
-                            src="https://maps.google.com/maps?width=600&height=450&hl=en&q=Kalku%20iela%204%2C%20Riga%2C%20Latvia%2C%20LV%201050&ie=UTF8&t=&z=14&iwloc=B&output=embed"
-                            width="600"
-                            height="450"
-                            style="border:0;"
-                            allowfullscreen=""
-                            loading="lazy"
+                        <!-- 
+                          Замените '...' на ваш код встраивания Google/Waze 
+                          Пример: <iframe src="https://www.google.com/maps/embed?pb=..."></iframe>
+                        -->
+                         <iframe 
+                            src="https://www.google.com/maps?q=Miera+iela+89,+Vidzemes+priekšpilsēta,+Rīga,+LV-1013,+Latvia&output=embed" 
+                            width="600" 
+                            height="450" 
+                            style="border:0;" 
+                            allowfullscreen="" 
+                            loading="lazy" 
                             referrerpolicy="no-referrer-when-downgrade">
                         </iframe>
                     </div>
@@ -688,16 +869,11 @@
                     <div class="contact-info">
                         <p>
                             <strong data-key="contact-address">Adrese:</strong><br>
-                            <!-- Обновите на реальный адрес -->
-                            Kaļķu iela 4, Riga, Latvia, LV 1050
+                            Miera iela 89, Vidzemes priekšpilsēta, Rīga, LV-1013
                         </p>
                         <p>
                             <strong data-key="contact-phone">Tālrunis:</strong><br>
-                            <a href="tel:+37122722287">+371 22 722 287</a>
-                        </p>
-                        <p>
-                            <strong data-key="contact-email">E-pasts:</strong><br>
-                            <a href="mailto:info@ogle.lv">info@ogle.lv</a>
+                            <a href="tel:+37129809489">29809489</a>
                         </p>
                     </div>
                 </div>
@@ -710,42 +886,58 @@
          JAVASCRIPT (i18n)
     =========================== -->
     <script>
+        // Ждем, пока загрузится вся структура страницы
         document.addEventListener('DOMContentLoaded', () => {
 
             // --- 1. ОБЪЕКТ С ПЕРЕВОДАМИ ---
-            // ОБНОВЛЕНО: Полностью заменяем объект на переводы для "OGLE"
             const translations = {
                 "lv": {
-                    "seo-title": "OGLE - Grils uz dzīvās uguns Rīgā",
-                    "seo-desc": "Grils uz dzīvās uguns. Ar dvēseli un raksturu. Labākie steiki un kokteiļi Vecrīgā.",
-                    "logo-text": "OGLE",
-                    "hero-title": "OGLE",
-                    "hero-subtitle": "Grils uz dzīvās uguns. Ar dvēseli un raksturu.",
+                    "seo-title": "Miera Maize - Labākā kafija pilsētā",
+                    "seo-desc": "Svaiga kafija un mājas izgatavota konditoreja Rīgas sirdī.",
+                    "logo-text": "Miera Maize",
+                    "hero-title": "Miera Maize",
+                    "hero-subtitle": "Kur katra tase stāsta savu stāstu. Garšīga kafija un mājīga atmosfēra jūs sagaida.",
                     "btn-call": "Zvanīt",
                     "btn-map": "Kā mūs atrast",
-                    "menu-title": "Mūsu Ēdienkarte",
-                    "menu-cat-appetizers": "Uzkodas",
-                    "menu-cat-main": "Grila Ēdieni",
-                    "menu-cat-drinks": "Kokteiļi",
-                    "menu-item-1-title": "Brusketa ar meža sēnēm",
-                    "menu-item-1-desc": "Krēmsiers un marinēti sīpoli",
-                    "menu-item-2-title": "Laša tartars",
-                    "menu-item-2-desc": "Ar avokado un sezama sēklām",
-                    "menu-item-3-title": "Filet Mignon (200g)",
-                    "menu-item-3-desc": "Liellopa filejas steiks",
-                    "menu-item-4-title": "Cūkgaļas BBQ Ribas (450g)",
-                    "menu-item-4-desc": "Ar austrumu maizi",
-                    "menu-item-5-title": "Mango Blush",
-                    "menu-item-5-desc": "Portobello Road Gin, Mango, Grenadīns, Citrons",
-                    "menu-item-6-title": "Green Sensation",
-                    "menu-item-6-desc": "Melones liķieris, Džins, Citrona sula, Olas baltums",
-                    "about-title": "Par Mums",
-                    "about-text": "OGLE ir vieta ar dvēseli un raksturu, kas pazīstama ar mūsu malkas grilu. Mēs piedāvājam labākos grilētos ēdienus un unikālus kokteiļus pašā Vecrīgas sirdī.",
-                    "alt-img-1": "Ogle interjers",
-                    "alt-img-2": "Grila ēdiens",
-                    "alt-img-3": "Kokteilis",
-                    "alt-img-4": "Ogle komanda",
-                    "hours-title": "Darba Laiks",
+                    "menu-title": "Mūsu ēdienkarte",
+                    "menu-cat-coffee": "Kafija",
+                    "menu-cat-pastries": "Konditoreja",
+                    "menu-cat-bread": "Maize",
+                    "menu-cat-hot": "Karstie dzērieni",
+                    "menu-cat-refresh": "Atspirdzinošie dzērieni",
+                    "menu-item-1-title": "Espresso",
+                    "menu-item-2-title": "Dubultais espresso",
+                    "menu-item-3-title": "Flat white",
+                    "menu-item-4-title": "Melna kafija",
+                    "menu-item-5-title": "Kafija ar pienu",
+                    "menu-item-6-title": "Cappuccino",
+                    "menu-item-7-title": "Caffè latte",
+                    "menu-item-8-title": "Kanēļa smalkmaizīte",
+                    "menu-item-9-title": "Kardamona smalkmaizīte",
+                    "menu-item-10-title": "Karameļu smalkmaizīte",
+                    "menu-item-11-title": "Klasiskā skābmaize",
+                    "menu-item-12-title": "Sēklu skābmaize",
+                    "menu-item-13-title": "Fokača ar tomātiem un papriku",
+                    "menu-item-14-title": "Fokača ar olīvām",
+                    "menu-item-15-title": "Matcha Latte",
+                    "menu-item-16-title": "Šokolādes dzēriens",
+                    "menu-item-17-title": "Tēja kanniņa",
+                    "menu-item-18-title": "Piens, augu piens",
+                    "menu-item-19-title": "Rožu limonāde",
+                    "menu-item-20-title": "Indijas toniks",
+                    "menu-item-21-title": "Coca-Cola",
+                    "menu-item-22-title": "Kombuča",
+                    "menu-item-23-title": "Ābolu sula",
+                    "menu-item-24-title": "Apelsīnu sula",
+                    "menu-item-25-title": "Negāzēts minerālūdens",
+                    "menu-item-26-title": "Gāzēts minerālūdens",
+                    "about-title": "Par mums",
+                    "about-text": "Miera Maize ir mājīga vieta, kur katrs atradīs savu ideālo kafiju. Mēs ar rokām ceptas pupiņas un gatavojam katru tasi ar mīlestību. Nāciet baudīt svaigas kafijas aromātu un mājas konditoreju mierīgā un mājīgā atmosfērā.",
+                    "alt-img-1": "Kafijas veikala interjers",
+                    "alt-img-2": "Kafijas tase",
+                    "alt-img-3": "Konditoreja",
+                    "alt-img-4": "Barista",
+                    "hours-title": "Darba laiks",
                     "day-mon": "Pirmdiena",
                     "day-tue": "Otrdiena",
                     "day-wed": "Trešdiena",
@@ -760,35 +952,51 @@
                     "contact-email": "E-pasts:"
                 },
                 "ru": {
-                    "seo-title": "OGLE - Гриль на живом огне в Риге",
-                    "seo-desc": "Гриль на живом огне. С душой и характером. Лучшие стейки и коктейли в Старой Риге.",
-                    "logo-text": "OGLE",
-                    "hero-title": "OGLE",
-                    "hero-subtitle": "Гриль на живом огне. С душой и характером.",
+                    "seo-title": "Miera Maize - Лучший кофе в городе",
+                    "seo-desc": "Уютная кофейня с ароматным кофе и свежей выпечкой в сердце Риги.",
+                    "logo-text": "Miera Maize",
+                    "hero-title": "Miera Maize",
+                    "hero-subtitle": "Где каждая чашка рассказывает свою историю. Ароматный кофе и уютная атмосфера ждут вас.",
                     "btn-call": "Позвонить",
-                    "btn-map": "Найти нас",
+                    "btn-map": "Как нас найти",
                     "menu-title": "Наше Меню",
-                    "menu-cat-appetizers": "Закуски",
-                    "menu-cat-main": "Блюда на Гриле",
-                    "menu-cat-drinks": "Коктейли",
-                    "menu-item-1-title": "Брускетта с лесными грибами",
-                    "menu-item-1-desc": "Сливочный сыр и маринованный лук",
-                    "menu-item-2-title": "Тартар из лосося",
-                    "menu-item-2-desc": "С авокадо и семенами кунжута",
-                    "menu-item-3-title": "Филе-миньон (200г)",
-                    "menu-item-3-desc": "Стейк из говяжьей вырезки",
-                    "menu-item-4-title": "Свиные рёбра BBQ (450г)",
-                    "menu-item-4-desc": "С восточным хлебом",
-                    "menu-item-5-title": "Mango Blush",
-                    "menu-item-5-desc": "Portobello Road Gin, Манго, Гренадин, Лимон",
-                    "menu-item-6-title": "Green Sensation",
-                    "menu-item-6-desc": "Дынный ликер, Джин, Лимонный сок, Яичный белок",
+                    "menu-cat-coffee": "Кофе",
+                    "menu-cat-pastries": "Выпечка",
+                    "menu-cat-bread": "Хлеб",
+                    "menu-cat-hot": "Горячие Напитки",
+                    "menu-cat-refresh": "Освежающие Напитки",
+                    "menu-item-1-title": "Эспрессо",
+                    "menu-item-2-title": "Двойной эспрессо",
+                    "menu-item-3-title": "Флэт уайт",
+                    "menu-item-4-title": "Черный кофе",
+                    "menu-item-5-title": "Кофе с молоком",
+                    "menu-item-6-title": "Капучино",
+                    "menu-item-7-title": "Кафе Латте",
+                    "menu-item-8-title": "Коричная сдоба",
+                    "menu-item-9-title": "Кардамоновая сдоба",
+                    "menu-item-10-title": "Карамельная сдоба",
+                    "menu-item-11-title": "Классический хлеб на закваске",
+                    "menu-item-12-title": "Хлеб на закваске с семенами",
+                    "menu-item-13-title": "Фокачча с томатами и перцем",
+                    "menu-item-14-title": "Фокачча с оливками",
+                    "menu-item-15-title": "Матча Латте",
+                    "menu-item-16-title": "Шоколадный напиток",
+                    "menu-item-17-title": "Чай в чайнике",
+                    "menu-item-18-title": "Молоко / Растительное молоко",
+                    "menu-item-19-title": "Розовый лимонад",
+                    "menu-item-20-title": "Индийский тоник",
+                    "menu-item-21-title": "Coca-Cola",
+                    "menu-item-22-title": "Комбуча",
+                    "menu-item-23-title": "Яблочный сок",
+                    "menu-item-24-title": "Апельсиновый сок",
+                    "menu-item-25-title": "Минеральная вода без газа",
+                    "menu-item-26-title": "Минеральная вода с газом",
                     "about-title": "О Нас",
-                    "about-text": "OGLE — это место с душой и характером, известное своим грилем на живом огне. Мы предлагаем лучшие блюда на гриле и уникальные коктейли в самом сердце Старой Риги.",
-                    "alt-img-1": "Интерьер Ogle",
-                    "alt-img-2": "Блюдо на гриле",
-                    "alt-img-3": "Коктейль",
-                    "alt-img-4": "Команда Ogle",
+                    "about-text": "Miera Maize — это уютное место, где каждый найдет свой идеальный кофе. Мы обжариваем зерна вручную и готовим каждую чашку с любовью. Приходите насладиться ароматом свежего кофе и домашней выпечкой в атмосфере спокойствия и уюта.",
+                    "alt-img-1": "Интерьер кофейни",
+                    "alt-img-2": "Чашка кофе",
+                    "alt-img-3": "Выпечка",
+                    "alt-img-4": "Бариста",
                     "hours-title": "Время Работы",
                     "day-mon": "Понедельник",
                     "day-tue": "Вторник",
@@ -804,35 +1012,51 @@
                     "contact-email": "Email:"
                 },
                 "en": {
-                    "seo-title": "OGLE - Wood Fired Grill in Riga",
-                    "seo-desc": "Wood Fired Grill. With Soul and Character. Best steaks and cocktails in Riga Old Town.",
-                    "logo-text": "OGLE",
-                    "hero-title": "OGLE",
-                    "hero-subtitle": "Wood Fired Grill. With Soul and Character.",
+                    "seo-title": "Miera Maize - Best coffee in the city",
+                    "seo-desc": "Cozy coffee shop with aromatic coffee and fresh pastries in the heart of Riga.",
+                    "logo-text": "Miera Maize",
+                    "hero-title": "Miera Maize",
+                    "hero-subtitle": "Where every cup tells its story. Aromatic coffee and cozy atmosphere await you.",
                     "btn-call": "Call Us",
                     "btn-map": "Find Us",
                     "menu-title": "Our Menu",
-                    "menu-cat-appetizers": "Snacks",
-                    "menu-cat-main": "Grill Dishes",
-                    "menu-cat-drinks": "Cocktails",
-                    "menu-item-1-title": "Bruschetta with forest mushrooms",
-                    "menu-item-1-desc": "Cream cheese and pickled onions",
-                    "menu-item-2-title": "Salmon tartar",
-                    "menu-item-2-desc": "With avocado and sesame seeds",
-                    "menu-item-3-title": "Filet Mignon (200g)",
-                    "menu-item-3-desc": "Beef filet mignon steak",
-                    "menu-item-4-title": "Pork BBQ Ribs (450g)",
-                    "menu-item-4-desc": "With oriental bread",
-                    "menu-item-5-title": "Mango Blush",
-                    "menu-item-5-desc": "Portobello Road Gin, Mango, Grenadine, Lemon",
-                    "menu-item-6-title": "Green Sensation",
-                    "menu-item-6-desc": "Melon liqueur, Gin, Lemon juice, Egg white",
+                    "menu-cat-coffee": "Coffee",
+                    "menu-cat-pastries": "Pastries",
+                    "menu-cat-bread": "Bread",
+                    "menu-cat-hot": "Hot Drinks",
+                    "menu-cat-refresh": "Refreshing Drinks",
+                    "menu-item-1-title": "Espresso",
+                    "menu-item-2-title": "Double Espresso",
+                    "menu-item-3-title": "Flat White",
+                    "menu-item-4-title": "Black Coffee",
+                    "menu-item-5-title": "Coffee with Milk",
+                    "menu-item-6-title": "Cappuccino",
+                    "menu-item-7-title": "Cafe Latte",
+                    "menu-item-8-title": "Cinnamon Pastry",
+                    "menu-item-9-title": "Cardamom Pastry",
+                    "menu-item-10-title": "Caramel Pastry",
+                    "menu-item-11-title": "Classic Sourdough Bread",
+                    "menu-item-12-title": "Seeded Sourdough Bread",
+                    "menu-item-13-title": "Focaccia with Tomatoes and Peppers",
+                    "menu-item-14-title": "Focaccia with Olives",
+                    "menu-item-15-title": "Matcha Latte",
+                    "menu-item-16-title": "Chocolate Drink",
+                    "menu-item-17-title": "Pot of Tea",
+                    "menu-item-18-title": "Milk / Plant Milk",
+                    "menu-item-19-title": "Rose Lemonade",
+                    "menu-item-20-title": "Indian Tonic",
+                    "menu-item-21-title": "Coca-Cola",
+                    "menu-item-22-title": "Kombucha",
+                    "menu-item-23-title": "Apple Juice",
+                    "menu-item-24-title": "Orange Juice",
+                    "menu-item-25-title": "Still Mineral Water",
+                    "menu-item-26-title": "Sparkling Mineral Water",
                     "about-title": "About Us",
-                    "about-text": "OGLE is a place with soul and character, known for our wood-fired grill. We offer the best grilled dishes and unique cocktails right in the heart of Riga Old Town.",
-                    "alt-img-1": "Ogle interior",
-                    "alt-img-2": "Grill dish",
-                    "alt-img-3": "Cocktail",
-                    "alt-img-4": "Ogle team",
+                    "about-text": "Miera Maize is a cozy place where everyone will find their perfect coffee. We roast beans by hand and prepare each cup with love. Come enjoy the aroma of fresh coffee and homemade pastries in an atmosphere of tranquility and comfort.",
+                    "alt-img-1": "Coffee shop interior",
+                    "alt-img-2": "Coffee cup",
+                    "alt-img-3": "Pastries",
+                    "alt-img-4": "Barista",
                     "hours-title": "Opening Hours",
                     "day-mon": "Monday",
                     "day-tue": "Tuesday",
@@ -855,44 +1079,52 @@
                 ru: document.getElementById('lang-ru'),
                 en: document.getElementById('lang-en')
             };
+            // Собираем все переключатели в массив для удобства
             const langLinks = Object.values(langSwitchers);
+            
+            // Находим все элементы, которые нужно перевести (с атрибутом data-key)
             const elementsToTranslate = document.querySelectorAll('[data-key]');
             
             // --- 3. ФУНКЦИЯ СМЕНЫ ЯЗЫКА ---
             const changeLanguage = (lang) => {
+                // 1. Проверяем, существует ли такой язык в нашей базе
                 if (!translations[lang]) {
                     console.error(`Language ${lang} not found in translations.`);
                     return;
                 }
 
+                // 2. Перебираем все найденные элементы
                 elementsToTranslate.forEach(element => {
                     const key = element.dataset.key;
-                    // Добавляем проверку, что перевод для ключа существует
                     const translation = translations[lang][key];
 
                     if (translation) {
-                        if (element.tagName === 'TITLE') {
-                            element.textContent = translation;
-                        } else if (element.tagName === 'META' && element.name === 'description') {
-                            element.content = translation;
+                        // Переводим текстовый контент
+                        if (element.tagName === 'TITLE' || element.tagName === 'META') {
+                            // Особый случай для <head> элементов
+                            if (element.tagName === 'TITLE') {
+                                element.textContent = translation;
+                            }
+                            if (element.tagName === 'META' && element.name === 'description') {
+                                element.content = translation;
+                            }
                         } else if (element.tagName === 'IMG') {
+                            // Особывый случай для alt-тегов изображений
                             element.alt = translation;
                         } else {
+                            // Стандартный перевод
                             element.textContent = translation;
-                        }
-                    } else if (lang === 'lv') { 
-                        // Логика: если перевода нет, но мы на языке по умолчанию (lv),
-                        // оставляем текст как есть (он уже на lv в HTML).
-                        // Если перевода нет на ru или en, в консоли появится ошибка.
-                        if (!translations['lv'][key]) {
-                            console.warn(`No translation key found for: ${key} in any language.`);
                         }
                     }
                 });
 
+                // 3. Устанавливаем атрибут lang у <html>
                 document.documentElement.lang = lang;
-                localStorage.setItem('restaurantLang', lang);
 
+                // 4. Сохраняем выбор в localStorage
+                localStorage.setItem('coffeeShopLang', lang);
+
+                // 5. Обновляем активный класс у переключателя
                 langLinks.forEach(link => link.classList.remove('active'));
                 if (langSwitchers[lang]) {
                     langSwitchers[lang].classList.add('active');
@@ -902,16 +1134,20 @@
             // --- 4. НАЗНАЧЕНИЕ ОБРАБОТЧИКОВ ---
             Object.keys(langSwitchers).forEach(lang => {
                 langSwitchers[lang].addEventListener('click', (e) => {
-                    e.preventDefault();
+                    e.preventDefault(); // Отменяем переход по ссылке (href="#")
                     changeLanguage(lang);
                 });
             });
 
             // --- 5. ИНИЦИАЛИЗАЦИЯ (ПЕРВАЯ ЗАГРУЗКА) ---
-            const savedLang = localStorage.getItem('restaurantLang') || 'lv';
+            // Проверяем, сохранен ли язык в localStorage, иначе используем 'lv' (Латвия)
+            const savedLang = localStorage.getItem('coffeeShopLang') || 'lv';
+            
+            // Вызываем функцию смены языка при первой загрузке
             changeLanguage(savedLang);
 
         });
     </script>
 </body>
+</html>
 </html>
