@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<!--
+  Язык по умолчанию (lv) указан для поисковиков.
+  Атрибут lang будет динамически меняться с помощью JavaScript.
+-->
+<html lang="lv">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Базовое SEO -->
+    <title data-key="seo-title">Pulse Bar - Nakts, kas vibro</title>
+    <meta name="description" content="Jaunības bars ar autoru kokteiļiem, dīdžeju setiem un street-food Rīgas centrā." data-key="seo-desc">
+
+    <!-- Шрифт: Manrope для современного вида -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --color-bg: #0b0b12;
+            --color-card: #131324;
+            --color-accent: #ff5f9f;
+            --color-accent-2: #6d8dff;
+            --color-text: #f7f7ff;
+            --color-sub: #c3c4d6;
+            --color-glow: 0 10px 40px rgba(255, 95, 159, 0.35);
+            --radius: 14px;
+            --shadow: 0 10px 40px rgba(0,0,0,0.35);
+            --font-main: 'Manrope', 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            font-family: var(--font-main);
+            background: radial-gradient(circle at 20% 20%, rgba(255,95,159,0.07), transparent 25%),
+                        radial-gradient(circle at 80% 0%, rgba(109,141,255,0.08), transparent 30%),
+                        var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        a { color: inherit; text-decoration: none; }
+
+        .container {
+            width: min(1100px, 92%);
+            margin: 0 auto;
+        }
+
+        header {
+            padding: 18px 0;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            backdrop-filter: blur(12px);
+            background: rgba(11,11,18,0.75);
+            border-bottom: 1px solid rgba(255,255,255,0.07);
+        }
+
+        .topbar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+        }
+
+        .logo {
+            font-weight: 800;
+            font-size: 1.2rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+        }
+
+        .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 14px;
+            border-radius: 999px;
+            background: linear-gradient(120deg, rgba(255,95,159,0.24), rgba(109,141,255,0.24));
+            color: var(--color-sub);
+            font-weight: 600;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 0.05em;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .lang-switcher a {
+            font-weight: 700;
+            color: var(--color-sub);
+            margin-left: 12px;
+            padding: 6px 8px;
+            border-radius: 8px;
+            transition: 0.2s ease;
+        }
+
+        .lang-switcher a:hover { color: var(--color-text); background: rgba(255,255,255,0.06); }
+        .lang-switcher a.active { color: var(--color-accent); background: rgba(255,95,159,0.12); }
+
+        /* Hero */
+        .hero {
+            position: relative;
+            padding: 80px 0 70px;
+            display: grid;
+            grid-template-columns: 1.1fr 0.9fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(circle at 70% 20%, rgba(255,95,159,0.12), transparent 40%),
+                        radial-gradient(circle at 30% 40%, rgba(109,141,255,0.12), transparent 45%);
+            z-index: -1;
+        }
+
+        .hero h1 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin: 0 0 14px;
+            letter-spacing: -0.01em;
+        }
+
+        .hero p {
+            margin: 0 0 22px;
+            color: var(--color-sub);
+            max-width: 520px;
+        }
+
+        .hero-actions {
+            display: flex;
+            gap: 14px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            border: none;
+            cursor: pointer;
+            font-weight: 700;
+            border-radius: 12px;
+            padding: 12px 18px;
+            box-shadow: var(--shadow);
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #ff5f9f, #6d8dff);
+            color: #0b0b12;
+        }
+        .btn-ghost {
+            background: rgba(255,255,255,0.06);
+            color: var(--color-text);
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .hero-card {
+            background: linear-gradient(140deg, rgba(255,95,159,0.12), rgba(109,141,255,0.1));
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: var(--radius);
+            padding: 18px;
+            box-shadow: var(--color-glow);
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 12px;
+        }
+
+        .mini-card {
+            background: rgba(0,0,0,0.2);
+            border-radius: 12px;
+            padding: 14px;
+            border: 1px solid rgba(255,255,255,0.08);
+        }
+
+        .mini-card strong { display: block; margin-bottom: 6px; }
+
+        /* Sections */
+        section { padding: 32px 0; }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 14px;
+        }
+
+        .section-header h2 { margin: 0; }
+        .section-header p { margin: 0; color: var(--color-sub); }
+
+        .grid {
+            display: grid;
+            gap: 16px;
+        }
+
+        .card {
+            background: var(--color-card);
+            border-radius: var(--radius);
+            border: 1px solid rgba(255,255,255,0.06);
+            padding: 18px;
+            box-shadow: var(--shadow);
+        }
+
+        .tag {
+            display: inline-block;
+            padding: 6px 10px;
+            border-radius: 10px;
+            background: rgba(255,255,255,0.06);
+            color: var(--color-sub);
+            font-size: 0.9rem;
+            margin-bottom: 8px;
+        }
+
+        .card strong { font-size: 1.05rem; }
+        .card p { color: var(--color-sub); margin: 6px 0 0; }
+
+        .events {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 14px;
+        }
+
+        .event-card {
+            padding: 18px;
+            border-radius: var(--radius);
+            border: 1px solid rgba(255,255,255,0.08);
+            background: linear-gradient(135deg, rgba(255,95,159,0.12), rgba(255,255,255,0.02));
+            box-shadow: var(--shadow);
+        }
+
+        .event-card small { color: var(--color-sub); }
+
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 12px;
+        }
+
+        .gallery-card {
+            border-radius: 16px;
+            height: 180px;
+            background-size: cover;
+            background-position: center;
+            border: 1px solid rgba(255,255,255,0.07);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery-label {
+            position: absolute;
+            left: 12px;
+            bottom: 12px;
+            padding: 6px 10px;
+            border-radius: 10px;
+            background: rgba(0,0,0,0.45);
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .info-card {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 12px;
+        }
+
+        footer {
+            padding: 24px 0 32px;
+            color: var(--color-sub);
+            font-size: 0.95rem;
+        }
+
+        @media (max-width: 800px) {
+            .hero { grid-template-columns: 1fr; }
+            header { position: sticky; }
+            .topbar { flex-direction: column; align-items: flex-start; }
+            .section-header { flex-direction: column; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container topbar">
+            <a class="logo" href="#" data-key="logo-text">Pulse Bar</a>
+            <span class="pill" data-key="pill-text">Jaunības kokteiļi · DJ vibes · Rīga</span>
+            <nav class="lang-switcher">
+                <a href="#" id="lang-lv" class="active">LV</a>
+                <a href="#" id="lang-ru">RU</a>
+                <a href="#" id="lang-en">EN</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <section class="hero container">
+            <div>
+                <h1 data-key="hero-title">Nakts, kas vibro. Pulse Bar.</h1>
+                <p data-key="hero-subtitle">Jauna vieta jaunajiem: авторские kokteiļi, street-food, диджеи по пятницам и субботам.</p>
+                <div class="hero-actions">
+                    <button class="btn btn-primary" data-key="btn-book">Rezervēt galdiņu</button>
+                    <button class="btn btn-ghost" data-key="btn-menu">Skatīt kokteiļus</button>
+                </div>
+            </div>
+            <div class="hero-card">
+                <div class="mini-card">
+                    <strong data-key="badge-happy">Happy Hour 18:00-20:00</strong>
+                    <span data-key="badge-happy-text">2=1 kokteiļi darba dienās</span>
+                </div>
+                <div class="mini-card">
+                    <strong data-key="badge-dj">DJ Sets</strong>
+                    <span data-key="badge-dj-text">Katru piektdienu & sestdienu</span>
+                </div>
+                <div class="mini-card">
+                    <strong data-key="badge-food">Street Food</strong>
+                    <span data-key="badge-food-text">Tacos, bowls & fries līdz 01:00</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="container">
+            <div class="section-header">
+                <h2 data-key="menu-title">Autoru kokteiļi</h2>
+                <p data-key="menu-subtitle">Neona klasика, svaigi миксы un zeroproof опции</p>
+            </div>
+            <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
+                <div class="card">
+                    <span class="tag" data-key="tag-signature">Signature</span>
+                    <strong data-key="drink-1-title">Pink Pulse</strong>
+                    <p data-key="drink-1-desc">Gin, rubīna greipfrūts, vaniļas sīrups, aquafaba, citrus bitters.</p>
+                </div>
+                <div class="card">
+                    <span class="tag" data-key="tag-smoky">Smoky</span>
+                    <strong data-key="drink-2-title">Midnight Ember</strong>
+                    <p data-key="drink-2-desc">Mezcal, espresso šots, karameles sīrups, apelsīna miza, dūmu kupols.</p>
+                </div>
+                <div class="card">
+                    <span class="tag" data-key="tag-fresh">Fresh</span>
+                    <strong data-key="drink-3-title">Cucumber Flash</strong>
+                    <p data-key="drink-3-desc">Vodka, gurķa sula, bazilika limonāde, toniks, mikrozaļumi.</p>
+                </div>
+                <div class="card">
+                    <span class="tag" data-key="tag-zero">Zero</span>
+                    <strong data-key="drink-4-title">No-Gravity</strong>
+                    <p data-key="drink-4-desc">Bezalkoholisks aperitīvs, hibiska sīrups, soda, citronzāles garša.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="container">
+            <div class="section-header">
+                <h2 data-key="bites-title">Street-bites</h2>
+                <p data-key="bites-subtitle">Ātri, kraukšķīgi un draudzīgi kopā ar kokteiļiem</p>
+            </div>
+            <div class="grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
+                <div class="card">
+                    <span class="tag" data-key="tag-vegan">Vegan</span>
+                    <strong data-key="bite-1-title">Kale Tacos</strong>
+                    <p data-key="bite-1-desc">Mīkstas kukurūzas tortiljas, cepti kikeriki, pico de gallo, lime-mayo.</p>
+                </div>
+                <div class="card">
+                    <span class="tag" data-key="tag-spicy">Spicy</span>
+                    <strong data-key="bite-2-title">Fire Fries</strong>
+                    <p data-key="bite-2-desc">Truffle kartupeļi, čili eļļa, parmezāns, chipotle mērce.</p>
+                </div>
+                <div class="card">
+                    <span class="tag" data-key="tag-classic">Classic</span>
+                    <strong data-key="bite-3-title">Bao Sliders</strong>
+                    <p data-key="bite-3-desc">Mini bao ar saldskābu cūkgaļu, miso-majonezi un marinētiem dārzeņiem.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="container">
+            <div class="section-header">
+                <h2 data-key="events-title">Tuvākie pasākumi</h2>
+                <p data-key="events-subtitle">Mēs miksējam mūziku tikpat nopietni kā kokteiļus</p>
+            </div>
+            <div class="events">
+                <div class="event-card">
+                    <small data-key="event-1-date">Piektdien 22:00</small>
+                    <h3 data-key="event-1-title">Neon House Night</h3>
+                    <p data-key="event-1-desc">Guest DJ Lina, deep house un melodic techno set + late happy hour.</p>
+                </div>
+                <div class="event-card">
+                    <small data-key="event-2-date">Sestdien 21:30</small>
+                    <h3 data-key="event-2-title">R&B Throwback</h3>
+                    <p data-key="event-2-desc">90s/00s vibes, speciālā kokteiļu karte ar yuzu sour & cola highball.</p>
+                </div>
+                <div class="event-card">
+                    <small data-key="event-3-date">Trešdien 20:00</small>
+                    <h3 data-key="event-3-title">Open Mic & Beats</h3>
+                    <p data-key="event-3-desc">Jaunie MC un spoken word. Reģistrācija pie bāra, welcome shot гостям.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="container">
+            <div class="section-header">
+                <h2 data-key="vibe-title">Vibe & telpa</h2>
+                <p data-key="vibe-subtitle">Neona gaismas, daudz sēdvietu un patīkama akustika sarunām</p>
+            </div>
+            <div class="gallery">
+                <div class="gallery-card" style="background-image: linear-gradient(135deg, rgba(255,95,159,0.3), rgba(109,141,255,0.3)), url('data/ogle/interior.jpg');">
+                    <span class="gallery-label" data-key="gallery-1-label">Bar</span>
+                </div>
+                <div class="gallery-card" style="background-image: linear-gradient(135deg, rgba(255,95,159,0.25), rgba(0,0,0,0.4)), url('data/ogle/1.jpg');">
+                    <span class="gallery-label" data-key="gallery-2-label">Cocktails</span>
+                </div>
+                <div class="gallery-card" style="background-image: linear-gradient(135deg, rgba(109,141,255,0.25), rgba(0,0,0,0.4)), url('data/ogle/3.jpg');">
+                    <span class="gallery-label" data-key="gallery-3-label">Beats</span>
+                </div>
+                <div class="gallery-card" style="background-image: linear-gradient(135deg, rgba(255,95,159,0.25), rgba(0,0,0,0.4)), url('data/ogle/4.jpg');">
+                    <span class="gallery-label" data-key="gallery-4-label">Friends</span>
+                </div>
+            </div>
+        </section>
+
+        <section class="container">
+            <div class="section-header">
+                <h2 data-key="info-title">Laiks & kontakti</h2>
+                <p data-key="info-subtitle">Ieliec kartē un zvani, lai rezervētu galdiņu vai dancefloor corner</p>
+            </div>
+            <div class="info-card">
+                <div class="card">
+                    <strong data-key="hours-title">Darba laiks</strong>
+                    <p><span data-key="day-mon">Pirmdiena</span>: 17:00 — 00:00</p>
+                    <p><span data-key="day-tue">Otrdiena</span>: 17:00 — 00:00</p>
+                    <p><span data-key="day-wed">Trešdiena</span>: 17:00 — 00:00</p>
+                    <p><span data-key="day-thu">Ceturtdiena</span>: 17:00 — 01:00</p>
+                    <p><span data-key="day-fri">Piektdiena</span>: 17:00 — 03:00</p>
+                    <p><span data-key="day-sat">Sestdiena</span>: 17:00 — 03:00</p>
+                    <p><span data-key="day-sun">Svētdiena</span>: 18:00 — 00:00</p>
+                </div>
+                <div class="card">
+                    <strong data-key="contact-title">Kontakti</strong>
+                    <p><span data-key="contact-address-label">Adrese</span>: Stabu iela 45, Rīga</p>
+                    <p><span data-key="contact-phone-label">Tālrunis</span>: <a href="tel:+37127007700">+371 2700 7700</a></p>
+                    <p><span data-key="contact-email-label">E-pasts</span>: <a href="mailto:hey@pulsebar.lv">hey@pulsebar.lv</a></p>
+                    <p><span data-key="contact-social">IG</span>: @pulsebar.riga</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="container">
+        <p data-key="footer-text">Pulse Bar · jauno nakts vieta Rīgas centrā · crafted by team</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const translations = {
+                lv: {
+                    'seo-title': 'Pulse Bar - Nakts, kas vibro',
+                    'seo-desc': 'Jaunības bars ar autoru kokteiļiem, dīdžeju setiem un street-food Rīgas centrā.',
+                    'logo-text': 'Pulse Bar',
+                    'pill-text': 'Jaunības kokteiļi · DJ vibes · Rīga',
+                    'hero-title': 'Nakts, kas vibro. Pulse Bar.',
+                    'hero-subtitle': 'Jauna vieta jaunajiem: авторские kokteiļi, street-food, dиджеи по пятницам и субботам.',
+                    'btn-book': 'Rezervēt galdiņu',
+                    'btn-menu': 'Skatīt kokteiļus',
+                    'badge-happy': 'Happy Hour 18:00-20:00',
+                    'badge-happy-text': '2=1 kokteiļi darba dienās',
+                    'badge-dj': 'DJ Sets',
+                    'badge-dj-text': 'Katru piektdienu & sestdienu',
+                    'badge-food': 'Street Food',
+                    'badge-food-text': 'Tacos, bowls & fries līdz 01:00',
+                    'menu-title': 'Autoru kokteiļi',
+                    'menu-subtitle': 'Neona klasика, svaigi миксы un zeroproof опции',
+                    'tag-signature': 'Signature',
+                    'drink-1-title': 'Pink Pulse',
+                    'drink-1-desc': 'Gin, rubīna greipfrūts, vaniļas sīrups, aquafaba, citrus bitters.',
+                    'tag-smoky': 'Smoky',
+                    'drink-2-title': 'Midnight Ember',
+                    'drink-2-desc': 'Mezcal, espresso šots, karameles sīrups, apelsīna miza, dūmu kupols.',
+                    'tag-fresh': 'Fresh',
+                    'drink-3-title': 'Cucumber Flash',
+                    'drink-3-desc': 'Vodka, gurķa sula, bazilika limonāde, toniks, mikrozaļumi.',
+                    'tag-zero': 'Zero',
+                    'drink-4-title': 'No-Gravity',
+                    'drink-4-desc': 'Bezalkoholisks aperitīvs, hibiska sīrups, soda, citronzāles garša.',
+                    'bites-title': 'Street-bites',
+                    'bites-subtitle': 'Ātri, kraukšķīgi un draudzīgi kopā ar kokteiļiem',
+                    'tag-vegan': 'Vegan',
+                    'bite-1-title': 'Kale Tacos',
+                    'bite-1-desc': 'Mīkstas kukurūzas tortiljas, cepti kikeriki, pico de gallo, lime-mayo.',
+                    'tag-spicy': 'Spicy',
+                    'bite-2-title': 'Fire Fries',
+                    'bite-2-desc': 'Truffle kartupeļi, čili eļļa, parmezāns, chipotle mērce.',
+                    'tag-classic': 'Classic',
+                    'bite-3-title': 'Bao Sliders',
+                    'bite-3-desc': 'Mini bao ar saldskābu cūkgaļu, miso-majonezi un marinētiem dārzeņiem.',
+                    'events-title': 'Tuvākie pasākumi',
+                    'events-subtitle': 'Mēs miksējam mūziku tikpat nopietni kā kokteiļus',
+                    'event-1-date': 'Piektdien 22:00',
+                    'event-1-title': 'Neon House Night',
+                    'event-1-desc': 'Guest DJ Lina, deep house un melodic techno set + late happy hour.',
+                    'event-2-date': 'Sestdien 21:30',
+                    'event-2-title': 'R&B Throwback',
+                    'event-2-desc': '90s/00s vibes, speciālā kokteiļu karte ar yuzu sour & cola highball.',
+                    'event-3-date': 'Trešdien 20:00',
+                    'event-3-title': 'Open Mic & Beats',
+                    'event-3-desc': 'Jaunie MC un spoken word. Reģistrācija pie bāra, welcome shot гостям.',
+                    'vibe-title': 'Vibe & telpa',
+                    'vibe-subtitle': 'Neona gaismas, daudz sēdvietu un patīkama akustika sarunām',
+                    'gallery-1-label': 'Bar',
+                    'gallery-2-label': 'Kokteiļi',
+                    'gallery-3-label': 'Beats',
+                    'gallery-4-label': 'Draugi',
+                    'info-title': 'Laiks & kontakti',
+                    'info-subtitle': 'Ieliec kartē un zvani, lai rezervētu galdiņu vai dancefloor corner',
+                    'hours-title': 'Darba laiks',
+                    'day-mon': 'Pirmdiena',
+                    'day-tue': 'Otrdiena',
+                    'day-wed': 'Trešdiena',
+                    'day-thu': 'Ceturtdiena',
+                    'day-fri': 'Piektdiena',
+                    'day-sat': 'Sestdiena',
+                    'day-sun': 'Svētdiena',
+                    'contact-title': 'Kontakti',
+                    'contact-address-label': 'Adrese',
+                    'contact-phone-label': 'Tālrunis',
+                    'contact-email-label': 'E-pasts',
+                    'contact-social': 'IG',
+                    'footer-text': 'Pulse Bar · jauno nakts vieta Rīgas centrā · crafted by team'
+                },
+                ru: {
+                    'seo-title': 'Pulse Bar - Молодёжный бар с диджеями',
+                    'seo-desc': 'Коктейли авторской подачи, street-food и DJ-сеты в центре Риги.',
+                    'logo-text': 'Pulse Bar',
+                    'pill-text': 'Авторские коктейли · DJ vibes · Рига',
+                    'hero-title': 'Ночь, которая вибрирует. Pulse Bar.',
+                    'hero-subtitle': 'Новое место для своих: авторские коктейли, street-food, диджеи по пятницам и субботам.',
+                    'btn-book': 'Забронировать стол',
+                    'btn-menu': 'Смотреть меню',
+                    'badge-happy': 'Happy Hour 18:00-20:00',
+                    'badge-happy-text': '2=1 на коктейли в будни',
+                    'badge-dj': 'DJ Sets',
+                    'badge-dj-text': 'Каждую пятницу и субботу',
+                    'badge-food': 'Street Food',
+                    'badge-food-text': 'Тако, боулы и фрайс до 01:00',
+                    'menu-title': 'Авторские коктейли',
+                    'menu-subtitle': 'Неоновая классика, свежие миксы и zeroproof опции',
+                    'tag-signature': 'Signature',
+                    'drink-1-title': 'Pink Pulse',
+                    'drink-1-desc': 'Джин, розовый грейпфрут, ванильный сироп, аквафаба, citrus bitters.',
+                    'tag-smoky': 'Smoky',
+                    'drink-2-title': 'Midnight Ember',
+                    'drink-2-desc': 'Мескаль, шот эспрессо, карамельный сироп, цедра апельсина, дым.',
+                    'tag-fresh': 'Fresh',
+                    'drink-3-title': 'Cucumber Flash',
+                    'drink-3-desc': 'Водка, сок огурца, базиликовый лимонад, тоник, микрозелень.',
+                    'tag-zero': 'Zero',
+                    'drink-4-title': 'No-Gravity',
+                    'drink-4-desc': 'Безалкогольный аперитив, сироп гибискуса, сода, вкус лемонграсса.',
+                    'bites-title': 'Street-bites',
+                    'bites-subtitle': 'Быстро, хрустко и дружелюбно к коктейлям',
+                    'tag-vegan': 'Vegan',
+                    'bite-1-title': 'Kale Tacos',
+                    'bite-1-desc': 'Мягкие кукурузные тортильи, обжаренный нут, pico de gallo, lime-mayo.',
+                    'tag-spicy': 'Spicy',
+                    'bite-2-title': 'Fire Fries',
+                    'bite-2-desc': 'Трюфельная картошка, чили-олия, пармезан, соус chipotle.',
+                    'tag-classic': 'Classic',
+                    'bite-3-title': 'Bao Sliders',
+                    'bite-3-desc': 'Мини-бао со свининой в кисло-сладком, мисо-майо и марин. овощами.',
+                    'events-title': 'Ближайшие события',
+                    'events-subtitle': 'Мы миксуем музыку так же серьёзно, как коктейли',
+                    'event-1-date': 'Пятница 22:00',
+                    'event-1-title': 'Neon House Night',
+                    'event-1-desc': 'Guest DJ Lina, deep house и melodic techno + поздний happy hour.',
+                    'event-2-date': 'Суббота 21:30',
+                    'event-2-title': 'R&B Throwback',
+                    'event-2-desc': '90s/00s вайб, спецкарта с yuzu sour и cola highball.',
+                    'event-3-date': 'Среда 20:00',
+                    'event-3-title': 'Open Mic & Beats',
+                    'event-3-desc': 'Новые MC и spoken word. Регистрация у бара, welcome shot гостям.',
+                    'vibe-title': 'Vibe и пространство',
+                    'vibe-subtitle': 'Неон, много мест и акустика, чтобы говорить, а не кричать',
+                    'gallery-1-label': 'Бар',
+                    'gallery-2-label': 'Коктейли',
+                    'gallery-3-label': 'Звук',
+                    'gallery-4-label': 'Друзья',
+                    'info-title': 'Время и контакты',
+                    'info-subtitle': 'Добавляй в карты и звони, чтобы забронировать стол или танцпол-корнер',
+                    'hours-title': 'График',
+                    'day-mon': 'Понедельник',
+                    'day-tue': 'Вторник',
+                    'day-wed': 'Среда',
+                    'day-thu': 'Четверг',
+                    'day-fri': 'Пятница',
+                    'day-sat': 'Суббота',
+                    'day-sun': 'Воскресенье',
+                    'contact-title': 'Контакты',
+                    'contact-address-label': 'Адрес',
+                    'contact-phone-label': 'Телефон',
+                    'contact-email-label': 'Email',
+                    'contact-social': 'IG',
+                    'footer-text': 'Pulse Bar · молодёжная точка в центре Риги · crafted by team'
+                },
+                en: {
+                    'seo-title': 'Pulse Bar - Youthful Night Bar',
+                    'seo-desc': 'Signature cocktails, street food, and weekly DJ sets in the heart of Riga.',
+                    'logo-text': 'Pulse Bar',
+                    'pill-text': 'Signature cocktails · DJ vibes · Riga',
+                    'hero-title': 'A night that vibrates. Pulse Bar.',
+                    'hero-subtitle': 'Fresh hangout: signature cocktails, street food, DJs every Friday & Saturday.',
+                    'btn-book': 'Book a table',
+                    'btn-menu': 'View cocktails',
+                    'badge-happy': 'Happy Hour 18:00-20:00',
+                    'badge-happy-text': '2-for-1 cocktails on weekdays',
+                    'badge-dj': 'DJ Sets',
+                    'badge-dj-text': 'Every Friday & Saturday',
+                    'badge-food': 'Street Food',
+                    'badge-food-text': 'Tacos, bowls & fries until 01:00',
+                    'menu-title': 'Signature Cocktails',
+                    'menu-subtitle': 'Neon classics, fresh mixes, and zeroproof options',
+                    'tag-signature': 'Signature',
+                    'drink-1-title': 'Pink Pulse',
+                    'drink-1-desc': 'Gin, ruby grapefruit, vanilla syrup, aquafaba, citrus bitters.',
+                    'tag-smoky': 'Smoky',
+                    'drink-2-title': 'Midnight Ember',
+                    'drink-2-desc': 'Mezcal, espresso shot, caramel syrup, orange peel, smoke dome.',
+                    'tag-fresh': 'Fresh',
+                    'drink-3-title': 'Cucumber Flash',
+                    'drink-3-desc': 'Vodka, cucumber juice, basil lemonade, tonic, microgreens.',
+                    'tag-zero': 'Zero',
+                    'drink-4-title': 'No-Gravity',
+                    'drink-4-desc': 'Non-alcoholic aperitif, hibiscus syrup, soda, lemongrass note.',
+                    'bites-title': 'Street-bites',
+                    'bites-subtitle': 'Fast, crispy, and friendly to cocktails',
+                    'tag-vegan': 'Vegan',
+                    'bite-1-title': 'Kale Tacos',
+                    'bite-1-desc': 'Soft corn tortillas, roasted chickpeas, pico de gallo, lime-mayo.',
+                    'tag-spicy': 'Spicy',
+                    'bite-2-title': 'Fire Fries',
+                    'bite-2-desc': 'Truffle fries, chili oil, parmesan, chipotle sauce.',
+                    'tag-classic': 'Classic',
+                    'bite-3-title': 'Bao Sliders',
+                    'bite-3-desc': 'Mini bao with sweet-sour pork, miso mayo, pickled veggies.',
+                    'events-title': 'Upcoming events',
+                    'events-subtitle': 'We mix music as seriously as cocktails',
+                    'event-1-date': 'Friday 22:00',
+                    'event-1-title': 'Neon House Night',
+                    'event-1-desc': 'Guest DJ Lina, deep house & melodic techno + late happy hour.',
+                    'event-2-date': 'Saturday 21:30',
+                    'event-2-title': 'R&B Throwback',
+                    'event-2-desc': '90s/00s vibes, special menu with yuzu sour & cola highball.',
+                    'event-3-date': 'Wednesday 20:00',
+                    'event-3-title': 'Open Mic & Beats',
+                    'event-3-desc': 'New MCs and spoken word. Sign up at the bar, welcome shot on us.',
+                    'vibe-title': 'Vibe & space',
+                    'vibe-subtitle': 'Neon lights, plenty of seats, and sound tuned for conversations',
+                    'gallery-1-label': 'Bar',
+                    'gallery-2-label': 'Cocktails',
+                    'gallery-3-label': 'Beats',
+                    'gallery-4-label': 'Friends',
+                    'info-title': 'Time & contacts',
+                    'info-subtitle': 'Pin us on maps and call to reserve a table or dancefloor corner',
+                    'hours-title': 'Opening hours',
+                    'day-mon': 'Monday',
+                    'day-tue': 'Tuesday',
+                    'day-wed': 'Wednesday',
+                    'day-thu': 'Thursday',
+                    'day-fri': 'Friday',
+                    'day-sat': 'Saturday',
+                    'day-sun': 'Sunday',
+                    'contact-title': 'Contacts',
+                    'contact-address-label': 'Address',
+                    'contact-phone-label': 'Phone',
+                    'contact-email-label': 'Email',
+                    'contact-social': 'IG',
+                    'footer-text': 'Pulse Bar · youthful night spot in downtown Riga · crafted by team'
+                }
+            };
+
+            const langSwitchers = {
+                lv: document.getElementById('lang-lv'),
+                ru: document.getElementById('lang-ru'),
+                en: document.getElementById('lang-en'),
+            };
+            const langLinks = Object.values(langSwitchers);
+            const elementsToTranslate = document.querySelectorAll('[data-key]');
+
+            const changeLanguage = (lang) => {
+                if (!translations[lang]) return;
+
+                elementsToTranslate.forEach((element) => {
+                    const key = element.dataset.key;
+                    const translation = translations[lang][key];
+
+                    if (translation) {
+                        if (element.tagName === 'TITLE') {
+                            element.textContent = translation;
+                        } else if (element.tagName === 'META' && element.name === 'description') {
+                            element.content = translation;
+                        } else {
+                            element.textContent = translation;
+                        }
+                    }
+                });
+
+                document.documentElement.lang = lang;
+                localStorage.setItem('pulseLang', lang);
+                langLinks.forEach(link => link.classList.remove('active'));
+                langSwitchers[lang]?.classList.add('active');
+            };
+
+            Object.keys(langSwitchers).forEach(lang => {
+                langSwitchers[lang].addEventListener('click', (e) => {
+                    e.preventDefault();
+                    changeLanguage(lang);
+                });
+            });
+
+            const savedLang = localStorage.getItem('pulseLang') || 'lv';
+            changeLanguage(savedLang);
+        });
+    </script>
+</body>
+</html>
