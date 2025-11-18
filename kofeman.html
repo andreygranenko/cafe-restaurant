@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<!--
+  Static single-page profile for Kofeman. The lang attribute is updated by JS
+  for SEO-friendly defaults while keeping everything in one HTML file.
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title data-key="seo-title">Kofeman — slow coffee moments in Riga</title>
+  <meta name="description" content="Kofeman is a cozy corner in the heart of Riga where coffee becomes a ritual and art meets warmth." data-key="seo-desc">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --color-primary: #6b4b3e;
+      --color-secondary: #d6b49a;
+      --color-contrast: #1f1b1a;
+      --color-bg: #f7f1ea;
+      --color-card: #ffffff;
+      --color-accent: #a26845;
+      --radius: 14px;
+      --shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+      --font-main: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: var(--font-main);
+      background: radial-gradient(circle at 20% 20%, rgba(214, 180, 154, 0.25), transparent 35%),
+                  radial-gradient(circle at 80% 0%, rgba(162, 104, 69, 0.18), transparent 32%),
+                  var(--color-bg);
+      color: var(--color-contrast);
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+      padding-bottom: 60px;
+    }
+
+    img { max-width: 100%; display: block; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      backdrop-filter: blur(10px);
+      background: rgba(247, 241, 234, 0.8);
+      border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .nav { max-width: 1100px; margin: 0 auto; padding: 16px 20px; display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-weight: 800; font-size: 1.4rem; color: var(--color-primary); text-decoration: none; letter-spacing: 0.5px; }
+    .lang-switch { display: flex; gap: 10px; align-items: center; }
+    .lang-switch button { border: none; background: transparent; font-weight: 600; cursor: pointer; color: #5a4b43; padding: 6px 10px; border-radius: 8px; transition: background 0.2s, color 0.2s; }
+    .lang-switch button.active { background: var(--color-primary); color: #fff; }
+
+    .hero {
+      max-width: 1100px;
+      margin: 40px auto 10px auto;
+      padding: 24px 20px 10px 20px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+      align-items: center;
+    }
+
+    .hero-card {
+      background: linear-gradient(135deg, rgba(107, 75, 62, 0.92), rgba(162, 104, 69, 0.88));
+      color: #fff;
+      padding: 32px;
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-card::after {
+      content: "";
+      position: absolute;
+      width: 240px;
+      height: 240px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.08);
+      top: -80px;
+      right: -60px;
+      filter: blur(2px);
+    }
+
+    .hero h1 { font-size: clamp(2rem, 3vw, 2.8rem); margin-bottom: 12px; line-height: 1.2; }
+    .hero p { max-width: 680px; color: rgba(255,255,255,0.95); font-size: 1.05rem; }
+    .hero .tag { display: inline-flex; align-items: center; gap: 8px; padding: 8px 12px; background: rgba(255,255,255,0.1); border-radius: 999px; margin-bottom: 12px; font-weight: 600; }
+
+    .grid { display: grid; gap: 16px; }
+    .grid.cols-3 { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); }
+
+    .card { background: var(--color-card); border-radius: var(--radius); padding: 18px 18px 22px; box-shadow: var(--shadow); border: 1px solid rgba(0,0,0,0.04); }
+    .card h3 { margin-bottom: 8px; font-size: 1.1rem; }
+    .card p { color: #4a3f38; }
+
+    .section { max-width: 1100px; margin: 40px auto; padding: 0 20px; }
+    .section h2 { font-size: 1.9rem; margin-bottom: 14px; color: var(--color-primary); }
+    .section .muted { color: #6a5b52; margin-bottom: 16px; }
+
+    .faq { display: grid; gap: 12px; }
+    .faq-item { background: #fff; border-radius: var(--radius); padding: 16px 18px; border: 1px solid rgba(0,0,0,0.04); box-shadow: var(--shadow); }
+    .faq-item h4 { margin-bottom: 6px; color: var(--color-primary); }
+    .faq-item p { color: #433832; }
+
+    .pill-list { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 10px; }
+    .pill { background: rgba(107, 75, 62, 0.1); color: #3c2e28; padding: 8px 12px; border-radius: 999px; font-weight: 600; }
+
+    .footer { max-width: 1100px; margin: 50px auto 0 auto; padding: 20px; text-align: center; color: #5a4b43; font-weight: 600; }
+
+    @media (min-width: 820px) {
+      .hero { grid-template-columns: 1.2fr 0.8fr; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="nav" aria-label="Main">
+      <a class="logo" href="#" data-key="logo">Kofeman</a>
+      <div class="lang-switch" aria-label="Language switcher">
+        <button data-lang="en" class="active">EN</button>
+        <button data-lang="ru">RU</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-card">
+        <span class="tag" data-key="tag">Slow moments · Cozy rituals</span>
+        <h1 data-key="hero-title">Kofeman — a cozy corner in the heart of Riga</h1>
+        <p data-key="hero-subtitle">Where coffee becomes a ritual and modern life gently blends with warmth, art, and unhurried conversations.</p>
+      </div>
+      <div class="grid cols-3">
+        <div class="card">
+          <h3 data-key="card-1-title">Sip & pause</h3>
+          <p data-key="card-1-text">Morning espresso on your way to work or slow signature tea with friends — take the moment you need.</p>
+        </div>
+        <div class="card">
+          <h3 data-key="card-2-title">Artful comfort</h3>
+          <p data-key="card-2-text">Soft lighting, warm textures, and local art make every table feel like a personal nook.</p>
+        </div>
+        <div class="card">
+          <h3 data-key="card-3-title">Simple hosting</h3>
+          <p data-key="card-3-text">Pure HTML, CSS, and a sprinkle of JavaScript — perfect for GitHub Pages with zero build tools.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="visit-title">
+      <h2 id="visit-title" data-key="visit-title">What makes time at Kofeman cozy</h2>
+      <p class="muted" data-key="visit-sub">We keep things uncomplicated: pick up coffee at the counter, settle in, and let us bring the food to your table.</p>
+      <div class="grid cols-3">
+        <div class="card">
+          <h3 data-key="visit-card-1-title">Thoughtful extras</h3>
+          <p data-key="visit-card-1-text">Free water, board games, coloring books, and even a big soft teddy bear if you come alone.</p>
+        </div>
+        <div class="card">
+          <h3 data-key="visit-card-2-title">Warm hospitality</h3>
+          <p data-key="visit-card-2-text">Pet-friendly space, small stools for your bags, and a sweet rescue from Estonia when orders take a little longer.</p>
+        </div>
+        <div class="card">
+          <h3 data-key="visit-card-3-title">Gratitude in small rituals</h3>
+          <p data-key="visit-card-3-text">Return dishes to the designated spot to keep the café welcoming for everyone — we appreciate every cozy gesture.</p>
+        </div>
+      </div>
+      <div class="pill-list">
+        <span class="pill" data-key="pill-1">Signature tea & espresso</span>
+        <span class="pill" data-key="pill-2">Gentle playlists</span>
+        <span class="pill" data-key="pill-3">Local art</span>
+        <span class="pill" data-key="pill-4">Comfort seating</span>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="faq-title">
+      <h2 id="faq-title" data-key="faq-title">Quick answers</h2>
+      <p class="muted" data-key="faq-sub">Everything you usually ask — so you can relax faster.</p>
+      <div class="faq">
+        <div class="faq-item">
+          <h4 data-key="faq-1-title">Restroom 🚻</h4>
+          <p data-key="faq-1-text">The access code is on your receipt. Enter it and the door will open. Lock the lower latch — the upper one clicks automatically. If it stays closed, someone is simply thinking inside.</p>
+        </div>
+        <div class="faq-item">
+          <h4 data-key="faq-2-title">Pet friendly 🐾</h4>
+          <p data-key="faq-2-text">We are happy to welcome your fluffy companions — they deserve a treat too.</p>
+        </div>
+        <div class="faq-item">
+          <h4 data-key="faq-3-title">Bag stools 👜</h4>
+          <p data-key="faq-3-text">Small stools are placed around the café so your bag can rest comfortably beside you.</p>
+        </div>
+        <div class="faq-item">
+          <h4 data-key="faq-4-title">Loyalty ☕️</h4>
+          <p data-key="faq-4-text">Collect six stamps — the next drink is our treat.</p>
+        </div>
+        <div class="faq-item">
+          <h4 data-key="faq-5-title">Coffee & meals 🍳</h4>
+          <p data-key="faq-5-text">Pick up coffee at the counter; we will bring food to the table. If it takes a bit longer, a sweet rescue from Estonia is waiting for you.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="final-title">
+      <h2 id="final-title" data-key="final-title">See you at Kofeman ❤️</h2>
+      <p class="muted" data-key="final-text">Leave a comment if you have questions or ideas — we love hearing from you.</p>
+    </section>
+  </main>
+
+  <div class="footer" data-key="footer">Built as a lightweight static page — ready for free hosting on GitHub Pages without extra tooling.</div>
+
+  <script>
+    const translations = {
+      en: {
+        'logo': 'Kofeman',
+        'tag': 'Slow moments · Cozy rituals',
+        'hero-title': 'Kofeman — a cozy corner in the heart of Riga',
+        'hero-subtitle': 'Where coffee becomes a ritual and modern life gently blends with warmth, art, and unhurried conversations.',
+        'card-1-title': 'Sip & pause',
+        'card-1-text': 'Morning espresso on your way to work or slow signature tea with friends — take the moment you need.',
+        'card-2-title': 'Artful comfort',
+        'card-2-text': 'Soft lighting, warm textures, and local art make every table feel like a personal nook.',
+        'card-3-title': 'Simple hosting',
+        'card-3-text': 'Pure HTML, CSS, and a sprinkle of JavaScript — perfect for GitHub Pages with zero build tools.',
+        'visit-title': 'What makes time at Kofeman cozy',
+        'visit-sub': 'We keep things uncomplicated: pick up coffee at the counter, settle in, and let us bring the food to your table.',
+        'visit-card-1-title': 'Thoughtful extras',
+        'visit-card-1-text': 'Free water, board games, coloring books, and even a big soft teddy bear if you come alone.',
+        'visit-card-2-title': 'Warm hospitality',
+        'visit-card-2-text': 'Pet-friendly space, small stools for your bags, and a sweet rescue from Estonia when orders take a little longer.',
+        'visit-card-3-title': 'Gratitude in small rituals',
+        'visit-card-3-text': 'Return dishes to the designated spot to keep the café welcoming for everyone — we appreciate every cozy gesture.',
+        'pill-1': 'Signature tea & espresso',
+        'pill-2': 'Gentle playlists',
+        'pill-3': 'Local art',
+        'pill-4': 'Comfort seating',
+        'faq-title': 'Quick answers',
+        'faq-sub': 'Everything you usually ask — so you can relax faster.',
+        'faq-1-title': 'Restroom 🚻',
+        'faq-1-text': 'The access code is on your receipt. Enter it and the door will open. Lock the lower latch — the upper one clicks automatically. If it stays closed, someone is simply thinking inside.',
+        'faq-2-title': 'Pet friendly 🐾',
+        'faq-2-text': 'We are happy to welcome your fluffy companions — they deserve a treat too.',
+        'faq-3-title': 'Bag stools 👜',
+        'faq-3-text': 'Small stools are placed around the café so your bag can rest comfortably beside you.',
+        'faq-4-title': 'Loyalty ☕️',
+        'faq-4-text': 'Collect six stamps — the next drink is our treat.',
+        'faq-5-title': 'Coffee & meals 🍳',
+        'faq-5-text': 'Pick up coffee at the counter; we will bring food to the table. If it takes a bit longer, a sweet rescue from Estonia is waiting for you.',
+        'final-title': 'See you at Kofeman ❤️',
+        'final-text': 'Leave a comment if you have questions or ideas — we love hearing from you.',
+        'footer': 'Built as a lightweight static page — ready for free hosting on GitHub Pages without extra tooling.',
+        'seo-title': 'Kofeman — slow coffee moments in Riga',
+        'seo-desc': 'Kofeman is a cozy corner in the heart of Riga where coffee becomes a ritual and art meets warmth.'
+      },
+      ru: {
+        'logo': 'Kofeman',
+        'tag': 'Замедленные моменты · Уютные ритуалы',
+        'hero-title': 'Kofeman — уютный уголок в самом сердце Риги',
+        'hero-subtitle': 'Здесь кофе становится ритуалом, а современная жизнь мягко переплетается с теплом, искусством и неспешными разговорами.',
+        'card-1-title': 'Глоток и пауза',
+        'card-1-text': 'Утренний эспрессо по пути на работу или неспешный фирменный чай с друзьями — выбирайте ритм, который вам нужен.',
+        'card-2-title': 'Атмосфера с искусством',
+        'card-2-text': 'Мягкий свет, тёплые фактуры и локальное искусство превращают каждый столик в личный уголок.',
+        'card-3-title': 'Просто разместить онлайн',
+        'card-3-text': 'Чистые HTML, CSS и немного JavaScript — идеально для GitHub Pages без сборщиков и Node.js.',
+        'visit-title': 'Что делает время в Kofeman уютным',
+        'visit-sub': 'Мы упрощаем процессы: кофе забираете у стойки, а еду приносим к столу — удобно и без суеты.',
+        'visit-card-1-title': 'Продуманные мелочи',
+        'visit-card-1-text': 'Бесплатная вода, настольные игры, раскраски и даже большой мягкий медведь, если вы зашли в одиночку.',
+        'visit-card-2-title': 'Тёплый приём',
+        'visit-card-2-text': 'Мы дружелюбны к питомцам, есть табуретки для сумок и сладкое спасение из Эстонии, если заказ готовится чуть дольше.',
+        'visit-card-3-title': 'Благодарность в деталях',
+        'visit-card-3-text': 'Возвращайте посуду на выделенное место — так Kofeman остаётся тёплым и гостеприимным для всех.',
+        'pill-1': 'Фирменный чай и эспрессо',
+        'pill-2': 'Нежные плейлисты',
+        'pill-3': 'Локальное искусство',
+        'pill-4': 'Комфортные места',
+        'faq-title': 'Быстрые ответы',
+        'faq-sub': 'Чтобы вы могли расслабиться ещё быстрее.',
+        'faq-1-title': 'Туалет 🚻',
+        'faq-1-text': 'Код доступа указан на чеке. Введите его — дверь откроется. Нижний фиксатор защёлкивайте вручную, верхний защёлкивается автоматически. Если дверь не открылась, значит там сейчас думают.',
+        'faq-2-title': 'Дружим с питомцами 🐾',
+        'faq-2-text': 'Мы рады видеть ваших пушистых друзей — угощение для них тоже найдётся.',
+        'faq-3-title': 'Табуретки для сумок 👜',
+        'faq-3-text': 'По залу расставлены небольшие табуретки, чтобы сумка удобно стояла рядом с вами.',
+        'faq-4-title': 'Лояльность ☕️',
+        'faq-4-text': 'Соберите шесть штампов — следующий напиток за наш счёт.',
+        'faq-5-title': 'Кофе и блюда 🍳',
+        'faq-5-text': 'Кофе забираете у стойки, еду приносим к столу. Если ожидание чуть дольше, вас уже ждёт сладкое спасение из Эстонии.',
+        'final-title': 'До встречи в Kofeman ❤️',
+        'final-text': 'Если есть вопросы или идеи, оставьте комментарий — нам важно ваше мнение.',
+        'footer': 'Лёгкая статичная страница — готова к бесплатному размещению на GitHub Pages без дополнительного окружения.',
+        'seo-title': 'Kofeman — медленные кофейные моменты в Риге',
+        'seo-desc': 'Kofeman — уютный уголок в центре Риги, где кофе становится ритуалом, а искусство встречается с теплом.'
+      }
+    };
+
+    const elements = document.querySelectorAll('[data-key]');
+    const buttons = document.querySelectorAll('.lang-switch button');
+
+    function setLanguage(lang) {
+      const dict = translations[lang] || translations.en;
+      document.documentElement.lang = lang;
+      elements.forEach(el => {
+        const key = el.dataset.key;
+        if (dict[key]) {
+          if (el.tagName.toLowerCase() === 'meta') {
+            el.setAttribute('content', dict[key]);
+          } else {
+            el.textContent = dict[key];
+          }
+        }
+      });
+      buttons.forEach(btn => btn.classList.toggle('active', btn.dataset.lang === lang));
+    }
+
+    buttons.forEach(btn => btn.addEventListener('click', () => setLanguage(btn.dataset.lang)));
+    setLanguage('en');
+  </script>
+</body>
+</html>
